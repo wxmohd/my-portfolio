@@ -83,22 +83,23 @@ export default function Navbar() {
         style={{
           background: isScrolled ? 
             'linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(23, 37, 84, 0.9))' : 
-            'transparent',
-          backdropFilter: isScrolled ? 'blur(10px)' : 'none',
-          transition: 'all 0.5s ease-out'
+            'linear-gradient(135deg, rgba(173, 216, 230, 0.8), rgba(135, 206, 235, 0.8))',
+          backdropFilter: 'blur(10px)',
+          transition: 'all 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
         }}
       >
         {/* Animated grid lines */}
         <div 
           className="absolute inset-0" 
           style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(0, 191, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(0, 191, 255, 0.1) 1px, transparent 1px)
-            `,
+            backgroundImage: isScrolled ?
+              `linear-gradient(to right, rgba(0, 191, 255, 0.1) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(0, 191, 255, 0.1) 1px, transparent 1px)` :
+              `linear-gradient(to right, rgba(0, 120, 215, 0.1) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(0, 120, 215, 0.1) 1px, transparent 1px)`,
             backgroundSize: '40px 40px',
-            opacity: isScrolled ? 0.5 : 0,
-            transition: 'opacity 0.5s ease-out',
+            opacity: 0.5,
+            transition: 'all 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
             transform: 'perspective(500px) rotateX(10deg)',
             transformOrigin: 'top'
           }}
@@ -112,12 +113,12 @@ export default function Navbar() {
             style={{
               width: `${Math.random() * 10 + 5}px`,
               height: `${Math.random() * 10 + 5}px`,
-              backgroundColor: 'rgba(0, 255, 255, 0.4)',
-              boxShadow: '0 0 10px rgba(0, 255, 255, 0.7)',
+              backgroundColor: isScrolled ? 'rgba(0, 255, 255, 0.4)' : 'rgba(0, 120, 215, 0.4)',
+              boxShadow: isScrolled ? '0 0 10px rgba(0, 255, 255, 0.7)' : '0 0 10px rgba(0, 120, 215, 0.7)',
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              opacity: isScrolled ? 0.7 : 0,
-              transition: 'opacity 0.5s ease-out',
+              opacity: 0.7,
+              transition: 'all 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
               animationDuration: `${Math.random() * 3 + 2}s`
             }}
           />
@@ -127,9 +128,11 @@ export default function Navbar() {
         <div 
           className="absolute bottom-0 left-0 right-0 h-[1px]"
           style={{
-            background: 'linear-gradient(to right, transparent, rgba(0, 255, 255, 0.7), transparent)',
-            opacity: isScrolled ? 1 : 0,
-            transition: 'opacity 0.5s ease-out'
+            background: isScrolled ? 
+              'linear-gradient(to right, transparent, rgba(0, 255, 255, 0.7), transparent)' : 
+              'linear-gradient(to right, transparent, rgba(0, 120, 215, 0.7), transparent)',
+            opacity: 1,
+            transition: 'all 1.5s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
         />
       </div>
