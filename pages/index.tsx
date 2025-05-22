@@ -194,16 +194,40 @@ export default function Home() {
               ))}
             </motion.div>
 
-            {/* Call to Action Buttons */}
+            {/* Call to Action Buttons - Enhanced with cute animations and icons */}
             <motion.div
               variants={itemVariants}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <Link href="#projects" className="btn-primary">
-                View Projects
+              <Link href="#projects" className="btn btn-primary flex items-center justify-center gap-2 px-6 py-3">
+                <span className="relative">
+                  <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-white animate-ping"></span>
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                </svg>
+                <span>View Projects</span>
+                <span className="ml-1 animate-bounce inline-block">✨</span>
               </Link>
-              <Link href="#contact" className="btn-outline">
-                Contact Me
+              <Link href="#contact" className="btn btn-outline relative flex items-center justify-center gap-2 px-6 py-3 overflow-hidden group">
+                {/* Diagonal overlay */}
+                <div className="absolute inset-0 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 transform origin-top-right z-0"></div>
+                </div>
+                
+                {/* Button content */}
+                <div className="flex items-center justify-center gap-2 z-10 relative">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                  </svg>
+                  <span>Contact Me</span>
+                  <span className="ml-1 text-xs relative top-0 animate-pulse">💌</span>
+                </div>
+                
+                {/* Animated dot */}
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
             </motion.div>
           </motion.div>

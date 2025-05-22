@@ -162,17 +162,36 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary relative overflow-hidden group"
+                  className="btn btn-primary relative overflow-hidden group px-6 py-3 flex items-center justify-center gap-2"
                 >
-                  <span className="relative z-10">
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </span>
-                  <motion.span 
-                    className="absolute inset-0 bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end -z-0"
-                    initial={{ x: '-100%' }}
-                    animate={isSubmitting ? { x: '0%' } : { x: '-100%' }}
-                    transition={{ duration: 1.5 }}
-                  />
+                  {/* Diagonal overlay */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-white/20 -skew-x-12 transform origin-top-right z-0"></div>
+                  </div>
+                  
+                  {/* Button content */}
+                  <div className="flex items-center justify-center gap-2 z-10 relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                    </svg>
+                    <span className="relative z-10">
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </span>
+                    {!isSubmitting && <span className="ml-1 text-xs animate-pulse">✨</span>}
+                  </div>
+                  
+                  {/* Animated dot */}
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  {/* Loading animation */}
+                  {isSubmitting && (
+                    <motion.span 
+                      className="absolute inset-0 bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end -z-0"
+                      initial={{ x: '-100%' }}
+                      animate={{ x: '0%' }}
+                      transition={{ duration: 1.5 }}
+                    />
+                  )}
                 </button>
               </motion.div>
             </form>

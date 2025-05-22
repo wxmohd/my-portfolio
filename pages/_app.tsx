@@ -7,8 +7,6 @@ import Navbar from '../components/Navbar';
 
 export default function App({ Component, pageProps, router }: AppProps) {
   const [isLoading, setIsLoading] = useState(true);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [cursorVariant, setCursorVariant] = useState('default');
 
   // Handle initial page load animation
   useEffect(() => {
@@ -20,33 +18,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Custom cursor effect
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Cursor variants
-  const cursorVariants = {
-    default: {
-      x: cursorPosition.x - 8,
-      y: cursorPosition.y - 8,
-      opacity: 0.5,
-    },
-    hover: {
-      x: cursorPosition.x - 16,
-      y: cursorPosition.y - 16,
-      height: 32,
-      width: 32,
-      opacity: 0.8,
-      backgroundColor: "rgba(255, 102, 196, 0.5)",
-      mixBlendMode: "difference",
-    },
-  };
+  // Page transition effect
 
   // Page transition variants
   const pageVariants = {
@@ -106,13 +78,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         </div>
       ) : (
         <>
-          {/* Custom cursor */}
-          <motion.div
-            className="fixed top-0 left-0 w-4 h-4 rounded-full bg-primary z-50 pointer-events-none hidden md:block"
-            variants={cursorVariants}
-            animate={cursorVariant}
-            transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
-          />
+          {/* Main content */}
 
           <div className="relative overflow-x-hidden">
             {/* Background decorative elements */}
@@ -132,7 +98,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                 animate="animate"
                 exit="exit"
               >
-                <Component {...pageProps} setCursorVariant={setCursorVariant} />
+                <Component {...pageProps} />
               </motion.main>
             </AnimatePresence>
 
@@ -140,7 +106,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
             <footer className="py-6 px-4 text-center text-dark/60 text-sm">
               <div className="max-w-6xl mx-auto">
                 <p>© {new Date().getFullYear()} Walaa Mohamed. All rights reserved.</p>
-                <p className="mt-2 text-xs">Designed with 💖 and modern tech</p>
+                <p className="mt-2 text-xs">Designed with 💖</p>
               </div>
             </footer>
           </div>

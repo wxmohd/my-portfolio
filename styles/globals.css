@@ -24,16 +24,30 @@
 }
 
 @layer components {
+  /* Button base styles with cute animations */
   .btn {
-    padding: 1.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 9999px;
-    transition-property: all;
-    transition-duration: 300ms;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     transform: translateZ(0);
   }
+  
+  /* Hover effect with bounce */
   .btn:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-3px);
   }
+  
+  /* Active/click effect */
+  .btn:active {
+    transform: scale(0.97);
+  }
+  
+  /* Focus styles */
   .btn:focus {
     outline: none;
     --tw-ring-offset-width: 2px;
@@ -44,13 +58,76 @@
     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
   }
   
+  /* Shimmer effect for all buttons */
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(45deg);
+    z-index: -1;
+    transition: all 0.6s ease;
+    animation: shimmer 3s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+      transform: translateX(100%) rotate(45deg);
+    }
+  }
+  
   .btn-primary {
     background-color: theme('colors.primary');
     color: white;
     box-shadow: 0 0 5px rgba(0, 191, 255, 0.5), 0 0 20px rgba(0, 191, 255, 0.3);
+    position: relative;
   }
+  
+  /* Cute hover effect for primary button */
   .btn-primary:hover {
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+    background-image: linear-gradient(to right, #00BFFF, #3A86FF, #00FFFF, #3A86FF);
+    background-size: 300% 100%;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 191, 255, 0.4);
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  /* Gradient animation */
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Cute bubble effect on hover */
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover::after {
+    opacity: 1;
+    animation: bubble-float 2s ease-in-out infinite;
+  }
+  
+  @keyframes bubble-float {
+    0% { transform: translateY(-50%) scale(0.8); }
+    50% { transform: translateY(-50%) scale(1.2); }
+    100% { transform: translateY(-50%) scale(0.8); }
   }
   
   .btn-secondary {
@@ -66,10 +143,54 @@
     border-width: 2px;
     border-color: theme('colors.primary');
     color: theme('colors.primary');
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    transition: all 0.5s ease;
   }
-  .btn-outline:hover {
+  
+  /* Cute fill effect for outline button */
+  .btn-outline::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
     background-color: theme('colors.primary');
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+    border-radius: 9999px;
+  }
+  
+  .btn-outline:hover {
     color: white;
+    border-color: transparent;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+  }
+  
+  .btn-outline:hover::before {
+    height: 100%;
+    animation: fill-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  @keyframes fill-up {
+    0% { height: 0; }
+    100% { height: 100%; }
+  }
+  
+  /* Cute heart beat effect on hover */
+  .btn-outline:hover {
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes heartbeat {
+    0% { transform: scale(1.05) translateY(-3px); }
+    5% { transform: scale(1.1) translateY(-3px); }
+    10% { transform: scale(1.05) translateY(-3px); }
+    15% { transform: scale(1.08) translateY(-3px); }
+    50% { transform: scale(1.05) translateY(-3px); }
+    100% { transform: scale(1.05) translateY(-3px); }
   }
   
   .card {

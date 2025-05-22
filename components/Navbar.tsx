@@ -160,32 +160,7 @@ export default function Navbar() {
                     }}
                   />
                   
-                  <div className="flex items-center space-x-1">
-                    {/* 3D text effect */}
-                    <div className="relative">
-                      {/* Shadow layer */}
-                      <span 
-                        className="absolute text-2xl font-tech font-bold tracking-wider text-transparent"
-                        style={{
-                          textShadow: '2px 2px 3px rgba(0, 0, 0, 0.3)',
-                          transform: 'translateX(2px) translateY(2px)',
-                          filter: 'blur(2px)'
-                        }}
-                      >
-                        WALAA
-                      </span>
-                      
-                      {/* Main text with gradient */}
-                      <span 
-                        className="relative text-2xl font-tech font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-700 transform transition-all duration-500 group-hover:scale-110"
-                        style={{
-                          textShadow: '0 0 15px rgba(0, 200, 255, 0.5)',
-                        }}
-                      >
-                        WALAA
-                      </span>
-                    </div>
-                    
+                  <div className="flex items-center">
                     {/* Animated dot with rays */}
                     <div className="relative">
                       <div 
