@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&family=Orbitron:wght@400;500;600;700&display=swap');
+
+/* Custom styles */
+@layer base {
+  body {
+    background-color: theme('colors.light');
+    color: theme('colors.dark');
+    font-family: theme('fontFamily.sans');
+    background-image: linear-gradient(to bottom right, rgba(0, 191, 255, 0.05), rgba(58, 134, 255, 0.05), rgba(0, 255, 255, 0.05));
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: theme('fontFamily.display');
+  }
+  
+  ::selection {
+    background-color: theme('colors.primary');
+    color: white;
+  }
+}
+
+@layer components {
+  .btn {
+    padding: 1.5rem 1rem;
+    border-radius: 9999px;
+    transition-property: all;
+    transition-duration: 300ms;
+    transform: translateZ(0);
+  }
+  .btn:hover {
+    transform: scale(1.05);
+  }
+  .btn:focus {
+    outline: none;
+    --tw-ring-offset-width: 2px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: theme('colors.primary');
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  }
+  
+  .btn-primary {
+    background-color: theme('colors.primary');
+    color: white;
+    box-shadow: 0 0 5px rgba(0, 191, 255, 0.5), 0 0 20px rgba(0, 191, 255, 0.3);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+  }
+  
+  .btn-secondary {
+    background-color: theme('colors.secondary');
+    color: white;
+    box-shadow: 0 4px 20px rgba(58, 134, 255, 0.15);
+  }
+  .btn-secondary:hover {
+    --tw-bg-opacity: 0.9;
+  }
+  
+  .btn-outline {
+    border-width: 2px;
+    border-color: theme('colors.primary');
+    color: theme('colors.primary');
+  }
+  .btn-outline:hover {
+    background-color: theme('colors.primary');
+    color: white;
+  }
+  
+  .card {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: white;
+    --tw-bg-opacity: 0.8;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 20px rgba(58, 134, 255, 0.15);
+    transition-property: all;
+    transition-duration: 300ms;
+  }
+  .card:hover {
+    box-shadow: 0 0 5px rgba(0, 191, 255, 0.5), 0 0 20px rgba(0, 191, 255, 0.3);
+  }
+  
+  .gradient-text {
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, theme('colors.gradient.start'), theme('colors.gradient.mid'), theme('colors.gradient.end'));
+  }
+  
+  .tech-border {
+    position: relative;
+  }
+  .tech-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 0.75rem;
+    background-image: linear-gradient(to right, theme('colors.accent'), theme('colors.primary'), theme('colors.secondary'));
+    z-index: -10;
+  }
+  
+  .glass {
+    background-color: white;
+    --tw-bg-opacity: 0.8;
+    backdrop-filter: blur(8px);
+  }
+  
+  /* Tech-focused animations */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(0, 191, 255, 0.5), 0 0 20px rgba(0, 191, 255, 0.3); }
+    50% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.5); }
+  }
+  
+  .tech-glow {
+    animation: glow 3s infinite;
+  }
+  
+  .tech-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .tech-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .shimmer {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:animate-shimmer;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 10px rgba(255, 102, 196, 0.3);
+  }
+  
+  .glass {
+    @apply bg-white bg-opacity-20 backdrop-blur-lg;
+  }
+  
+  .clip-path-slant {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+}
