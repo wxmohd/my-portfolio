@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@sendgrid/mail": "^8.1.5",
     "framer-motion": "^12.12.1",
     "next": "^15.3.2",
     "react": "^19.1.0",

@@ -207,7 +207,7 @@ export default function Navbar() {
             </div>
             
             {/* Social links with interactive effects */}
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mr-12 md:mr-0">
               {/* GitHub */}
               <a 
                 href="https://github.com/wxmohd" 
@@ -316,10 +316,11 @@ export default function Navbar() {
       </div>
       
       {/* Mobile Menu Toggle */}
-      <div className="md:hidden absolute top-4 right-4 z-50">
+      <div className="md:hidden absolute top-3 right-4 z-50">
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 rounded-lg bg-darkBlue/80 text-cyan-400 border border-cyan-500/30 backdrop-blur-sm transition-all duration-300 hover:bg-darkBlue/50 hover:scale-105 focus:outline-none"
+          style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
           <div
             className="transition-transform duration-300"
@@ -330,7 +331,7 @@ export default function Navbar() {
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor" 
-              className="w-6 h-6"
+              className="w-5 h-5"
             >
               {isMobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
