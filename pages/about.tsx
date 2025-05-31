@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaReact, FaPython, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaShieldAlt, FaTerminal, FaCode, FaLock, FaSearch, FaUserAlt, FaLaptopCode, FaBolt } from 'react-icons/fa'
-import { SiTailwindcss, SiNextdotjs, SiTypescript, SiWireshark, SiKalilinux, SiMetasploit } from 'react-icons/si'
+import { SiTailwindcss, SiNextdotjs, SiTypescript, SiWireshark, SiKalilinux, SiMetasploit, SiGo } from 'react-icons/si'
 import { GrVulnerability } from 'react-icons/gr'
 import { BiSolidAnalyse } from 'react-icons/bi'
 import { RiShieldKeyholeFill, RiUserHeartLine } from 'react-icons/ri'
@@ -30,6 +30,7 @@ const techSkills = [
   { name: 'CSS3', icon: <motion.div whileHover="hover" variants={iconVariants}><FaCss3Alt size={40} className="text-blue-600" /></motion.div> },
   { name: 'Node.js', icon: <motion.div whileHover="hover" variants={iconVariants}><FaNodeJs size={40} className="text-green-600" /></motion.div> },
   { name: 'Git', icon: <motion.div whileHover="hover" variants={iconVariants}><FaGitAlt size={40} className="text-red-500" /></motion.div> },
+  { name: 'Golang', icon: <motion.div whileHover="hover" variants={iconVariants}><SiGo size={40} className="text-cyan-600" /></motion.div> },
 ]
 
 // Cyber icon animation variants
@@ -85,15 +86,36 @@ export default function AboutSection() {
   const [currentCommand, setCurrentCommand] = useState(0);
   const [terminalText, setTerminalText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
+  const [terminalVisible, setTerminalVisible] = useState(false);
   const [mockCVEs, setMockCVEs] = useState<CVE[]>([
     { id: 'CVE-2023-45698', description: 'Buffer overflow in OpenSSL', severity: 'Critical', published: '2023-11-15' },
     { id: 'CVE-2023-38831', description: 'Remote code execution in PDF reader', severity: 'High', published: '2023-10-22' },
     { id: 'CVE-2023-29200', description: 'SQL injection vulnerability in CMS', severity: 'Medium', published: '2023-09-05' },
   ]);
 
-  // Terminal animation effect
+  // Check when terminal is visible
   useEffect(() => {
-    if (currentCommand >= terminalCommands.length) return;
+    const handleScroll = () => {
+      const terminalElement = document.querySelector('.terminal-animation');
+      if (terminalElement) {
+        const rect = terminalElement.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+        if (isVisible && !terminalVisible) {
+          setTerminalVisible(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [terminalVisible]);
+
+  // Terminal animation effect - only starts when terminal is visible
+  useEffect(() => {
+    if (!terminalVisible || currentCommand >= terminalCommands.length) return;
     
     const command = terminalCommands[currentCommand].command;
     const output = terminalCommands[currentCommand].output;
@@ -138,7 +160,7 @@ export default function AboutSection() {
       clearInterval(typingInterval);
       clearInterval(cursorInterval);
     };
-  }, [currentCommand]);
+  }, [currentCommand, terminalVisible]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
@@ -257,7 +279,7 @@ export default function AboutSection() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
         {/* Terminal */}
         <motion.div
-          className="bg-gray-900 rounded-xl overflow-hidden shadow-xl"
+          className="bg-gray-900 rounded-xl overflow-hidden shadow-xl terminal-animation"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -320,57 +342,6 @@ export default function AboutSection() {
         </motion.div>
       </div>
 
-      {/* Timeline of Detected Threats */}
-      <motion.div
-        className="relative"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      >
-        <h2 className="text-2xl font-bold text-darkPurple mb-8 text-center relative inline-block">
-          <span className="relative z-10"><MdTimeline className="inline-block mr-2 text-red-500" size={22} /> Threat Detection Timeline</span>
-          <motion.span 
-            className="absolute -bottom-2 left-0 w-full h-2 bg-red-300 z-0" 
-            initial={{ width: 0 }}
-            whileInView={{ width: '100%' }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          />
-        </h2>
-        
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200"></div>
-        
-        {[1, 2, 3].map((item, i) => (
-          <motion.div 
-            key={i}
-            className={`relative mb-12 ${i % 2 === 0 ? 'text-right pr-10 md:ml-auto md:mr-1/2' : 'text-left pl-10 md:mr-auto md:ml-1/2'} md:w-5/12`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 * i, duration: 0.5 }}
-          >
-            <motion.div 
-              className={`absolute top-0 ${i % 2 === 0 ? 'right-0' : 'left-0'} w-8 h-8 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center z-10 shadow-lg`}
-              whileHover={{ scale: 1.2, boxShadow: "0 0 15px rgba(79, 70, 229, 0.6)" }}
-              transition={{ duration: 0.3 }}
-            >
-              <FaShieldAlt className="text-white" />
-            </motion.div>
-            <div className="bg-white p-5 rounded-lg shadow-lg">
-              <span className="text-xs text-gray-500">Day {i+1}</span>
-              <h3 className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-2">
-                {i === 0 ? 'Suspicious Login Attempt' : i === 1 ? 'Malware Detected' : 'Firewall Rule Updated'}
-              </h3>
-              <p className="text-sm text-gray-700">
-                {i === 0 ? 'Multiple failed login attempts from IP 192.168.1.45. Blocked after 5 attempts.' : 
-                 i === 1 ? 'Trojan detected in download.exe. File quarantined and system scanned.' : 
-                 'Added new firewall rule to block outbound connections to known C&C servers.'}
-              </p>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
     </div>
   )
 }

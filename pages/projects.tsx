@@ -50,7 +50,7 @@ export default function ProjectsSection() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
       {/* Header */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-8">
         <motion.h1
           className="text-5xl font-bold text-darkPurple mb-4 tracking-tight"
           initial={{ opacity: 0, y: -30 }}
