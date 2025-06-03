@@ -113,7 +113,7 @@ export default function Home() {
                     style={{ 
                       fontFamily: "'Space Grotesk', sans-serif",
                       letterSpacing: '-0.02em',
-                      background: 'linear-gradient(90deg, #00a3ff, #00ffff)',
+                      background: 'linear-gradient(90deg, #00a2ff, #3a8dff, #00b8ff, #00f2ff)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent'
                     }}
@@ -121,8 +121,8 @@ export default function Home() {
                     Walaa Mohamed
                   </span>
                   <div 
-                    className="absolute -bottom-3 left-0 w-full h-2 bg-gradient-to-r from-primary to-accent"
-                    style={{ boxShadow: '0 0 15px rgba(0, 191, 255, 0.8)' }}
+                    className="absolute -bottom-2 left-0 w-full h-1"
+                    style={{ backgroundColor: '#00a2ff', boxShadow: 'none' }}
                   ></div>
                 </div>
               </h1>
@@ -295,7 +295,7 @@ export default function Home() {
               {/* Enhanced profile image with interactive hover effects - smaller size */}
               <motion.div 
                 className="relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl" 
-                style={{ width: '240px', height: '240px', margin: '0 auto' }}
+                style={{ width: '280px', height: '280px', margin: '0 auto' }}
                 whileHover={{ 
                   boxShadow: '0 0 30px rgba(0, 191, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.3)'
                 }}
