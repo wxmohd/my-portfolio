@@ -61,51 +61,13 @@ export default function Home() {
     <div className="relative">
       {/* Home Section - Modern Asymmetric Design */}
       <section id="home" className="relative overflow-hidden min-h-[100vh] flex items-center pt-16">
-        {/* Dynamic 3D grid background */}
-        <div className="absolute inset-0 -z-20">
+        {/* Solid light blue background - no patterns or design elements */}
+        <div className="absolute inset-0 -z-20 overflow-hidden">
           <div 
             className="absolute inset-0" 
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, rgba(0, 191, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 191, 255, 0.03) 1px, transparent 1px)
-              `,
-              backgroundSize: '50px 50px',
-              transform: `perspective(1000px) rotateX(${cursorPosition.y / 100}deg) rotateY(${-cursorPosition.x / 100}deg)`,
-              transformOrigin: 'center',
-              transition: 'transform 0.5s ease-out'
-            }}
+            style={{ backgroundColor: '#e6f4ff' }}
           />
         </div>
-
-        {/* Animated particles */}
-        {isMounted && (
-          <div className="absolute inset-0 -z-10">
-            {[...Array(30)].map((_, i) => (
-              <motion.div 
-                key={i}
-                className="absolute rounded-full bg-primary/30"
-                style={{
-                  width: `${Math.random() * 6 + 2}px`,
-                  height: `${Math.random() * 6 + 2}px`,
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
-                  filter: 'blur(1px)',
-                  boxShadow: '0 0 10px rgba(0, 191, 255, 0.5)'
-                }}
-                animate={{
-                  y: [0, Math.random() * 100 - 50],
-                  opacity: [0.7, 0.1, 0.7],
-                }}
-                transition={{
-                  duration: Math.random() * 10 + 10,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            ))}
-          </div>
-        )}
 
         {/* Main content with asymmetric layout */}
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
@@ -116,42 +78,65 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Animated badge */}
-            <motion.div 
-              className="inline-block mb-6 bg-darkBlue/10 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-1 text-sm font-mono text-primary"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-              Full-Stack Developer
-            </motion.div>
+            {/* Animated badges */}
+            <div className="flex flex-wrap gap-3 mb-6">
+              <motion.div 
+                className="inline-block bg-darkBlue/20 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-1 text-sm font-mono text-darkBlue font-medium"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(0, 191, 255, 0.15)' }}
+              >
+                <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
+                Cybersecurity Specialist
+              </motion.div>
+              
+              <motion.div 
+                className="inline-block bg-darkBlue/20 backdrop-blur-sm border border-accent/30 rounded-full px-4 py-1 text-sm font-mono text-darkBlue font-medium"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(0, 255, 255, 0.15)' }}
+              >
+                <span className="inline-block w-2 h-2 rounded-full bg-accent mr-2 animate-pulse"></span>
+                Full-Stack Developer
+              </motion.div>
+            </div>
 
             {/* Main heading with 3D effect */}
             <div className="relative mb-4">
-              <h1 className="text-5xl md:text-7xl font-bold mb-2 tracking-tight">
+              <h1 className="text-5xl md:text-7xl font-bold mb-2 tracking-tight text-darkBlue">
                 Hello, I'm{' '}
                 <div className="relative inline-block">
-                  <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
+                  <span 
+                    className="relative z-10 bg-clip-text text-transparent font-bold text-5xl md:text-7xl" 
+                    style={{ 
+                      fontFamily: "'Space Grotesk', sans-serif",
+                      letterSpacing: '-0.02em',
+                      background: 'linear-gradient(90deg, #00a3ff, #00ffff)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent'
+                    }}
+                  >
                     Walaa Mohamed
                   </span>
                   <div 
-                    className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent"
-                    style={{ boxShadow: '0 0 10px rgba(0, 191, 255, 0.7)' }}
+                    className="absolute -bottom-3 left-0 w-full h-2 bg-gradient-to-r from-primary to-accent"
+                    style={{ boxShadow: '0 0 15px rgba(0, 191, 255, 0.8)' }}
                   ></div>
                 </div>
               </h1>
             </div>
 
-            {/* Animated typing effect */}
+            {/* Enhanced description with cybersecurity and development focus */}
             <motion.p 
-              className="text-xl md:text-2xl mb-8 text-dark/80 font-light"
+              className="text-xl md:text-2xl mb-8 text-dark font-normal"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              A tech enthusiast with a passion for creating <br className="hidden md:block" />
-              <span className="font-medium text-dark">innovative</span> and <span className="font-medium text-dark">elegant</span> digital experiences.
+              Bridging the gap between <span className="font-semibold text-darkBlue">secure systems</span> and <br className="hidden md:block" />
+              <span className="font-semibold text-darkBlue">cutting-edge</span> web development solutions.
             </motion.p>
             
             {/* Animated Tech Icons */}
@@ -232,47 +217,117 @@ export default function Home() {
             </motion.div>
           </motion.div>
           
-          {/* Right content - 3D profile image */}
+          {/* Right content - Enhanced 3D profile image */}
           <motion.div 
             className="md:col-span-5 relative z-10"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <div className="relative">
-              {/* Glowing background effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-secondary/30 to-accent/20 rounded-full blur-xl opacity-70 animate-pulse-slow" />
+              {/* Enhanced glowing background effect with animation */}
+              <motion.div 
+                className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-secondary/30 to-accent/20 rounded-full blur-xl opacity-70" 
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  opacity: [0.7, 0.5, 0.7]
+                }}
+                transition={{ 
+                  duration: 8, 
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+              />
               
-              {/* Rotating tech orbit */}
+              {/* Enhanced rotating tech orbit with multiple layers */}
               <div className="absolute inset-0 -z-10">
-                <div className="absolute inset-0 animate-spin-slow">
-                  {[...Array(12)].map((_, i) => (
-                    <div 
-                      key={i} 
-                      className="absolute w-2 h-2 rounded-full bg-primary"
+                {/* Inner orbit - faster rotation */}
+                <motion.div 
+                  className="absolute inset-0" 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                >
+                  {[...Array(8)].map((_, i) => (
+                    <motion.div 
+                      key={`inner-${i}`} 
+                      className="absolute w-1.5 h-1.5 rounded-full bg-primary"
                       style={{ 
                         top: '50%', 
                         left: '50%', 
-                        transform: `rotate(${i * 30}deg) translateX(140px) translateY(-50%)`,
-                        opacity: 0.5 + (i % 3) * 0.2,
-                        boxShadow: '0 0 10px rgba(0, 191, 255, 0.7)'
+                        transform: `rotate(${i * 45}deg) translateX(95px) translateY(-50%)`,
+                        boxShadow: '0 0 8px rgba(0, 191, 255, 0.7)'
+                      }}
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{ 
+                        duration: 2, 
+                        delay: i * 0.2,
+                        repeat: Infinity,
+                        repeatType: "reverse"
                       }}
                     />
                   ))}
-                </div>
+                </motion.div>
+                
+                {/* Middle orbit - slower rotation in opposite direction */}
+                <motion.div 
+                  className="absolute inset-0" 
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                >
+                  {[...Array(12)].map((_, i) => (
+                    <motion.div 
+                      key={`middle-${i}`} 
+                      className="absolute w-2 h-2 rounded-full"
+                      style={{ 
+                        top: '50%', 
+                        left: '50%', 
+                        transform: `rotate(${i * 30}deg) translateX(120px) translateY(-50%)`,
+                        backgroundColor: i % 3 === 0 ? 'rgba(0, 191, 255, 0.7)' : i % 3 === 1 ? 'rgba(58, 134, 255, 0.7)' : 'rgba(0, 255, 255, 0.7)',
+                        boxShadow: i % 3 === 0 ? '0 0 10px rgba(0, 191, 255, 0.8)' : i % 3 === 1 ? '0 0 10px rgba(58, 134, 255, 0.8)' : '0 0 10px rgba(0, 255, 255, 0.8)'
+                      }}
+                    />
+                  ))}
+                </motion.div>
               </div>
               
-              {/* Profile image */}
-              <div className="relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl" style={{ width: '280px', height: '280px', margin: '0 auto' }}>
-                <img
-                  src="/profile.jpg"
-                  alt="Walaa Mohamed"
-                  className="w-full h-full object-cover"
+              {/* Enhanced profile image with interactive hover effects - smaller size */}
+              <motion.div 
+                className="relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl" 
+                style={{ width: '240px', height: '240px', margin: '0 auto' }}
+                whileHover={{ 
+                  boxShadow: '0 0 30px rgba(0, 191, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.3)'
+                }}
+              >
+                <motion.div
+                  className="w-full h-full"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <img
+                    src="/profile.jpg"
+                    alt="Walaa Mohamed"
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+                
+                {/* Enhanced overlay with interactive gradient */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" 
+                  initial={{ opacity: 0.6 }}
+                  whileHover={{ 
+                    opacity: 0.4,
+                    background: 'linear-gradient(to top, rgba(0, 255, 255, 0.4), transparent)'
+                  }}
                 />
                 
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-60" />
-              </div>
+                {/* Decorative corner accents */}
+                <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-white/40 rounded-tl-sm"></div>
+                <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-white/40 rounded-tr-sm"></div>
+                <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-white/40 rounded-bl-sm"></div>
+                <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-white/40 rounded-br-sm"></div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
