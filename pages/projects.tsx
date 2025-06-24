@@ -7,7 +7,7 @@ import { BsArrowRight, BsCodeSlash } from 'react-icons/bs'
 const projects = [
   {
     title: 'PhishSecure',
-    description: 'A web-based application that uses machine learning to detect phishing emails based on message content and structure. Users can paste an email or upload a .eml file for risk assessment.',
+    description: 'A web-based application that uses machine learning to detect phishing emails based on message content and structure. Users can paste an email for risk assessment.',
     link: 'https://github.com/wxmohd/PhishSecure',
     demoLink: '#',
     tags: ['Machine Learning', 'Next.js', 'Flask', 'Security'],
