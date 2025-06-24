@@ -6,13 +6,19 @@ import { BsArrowRight, BsCodeSlash } from 'react-icons/bs'
 
 const projects = [
   {
-    title: 'Bomberman DOM',
-    description: 'A multiplayer Bomberman game built using a custom mini-framework and DOM manipulation (no canvas/WebGL). Features an Egyptian theme for a unique and fun gaming experience.',
-    link: 'https://github.com/wxmohd/bomberman-dom',
+    title: 'PhishSecure',
+    description: 'A web-based application that uses machine learning to detect phishing emails based on message content and structure. Users can paste an email or upload a .eml file for risk assessment.',
+    link: 'https://github.com/wxmohd/PhishSecure',
     demoLink: '#',
-    tags: ['JavaScript', 'DOM', 'Game Development', 'Custom Framework'],
-    icon: <FaGamepad className="text-red-500" size={24} />,
-    tech: ['JavaScript', 'HTML5', 'CSS3']
+    tags: ['Machine Learning', 'Next.js', 'Flask', 'Security'],
+    icon: <FaCode className="text-red-500" size={24} />,
+    tech: ['Python', 'Flask', 'Next.js', 'Tailwind CSS', 'scikit-learn'],
+    features: [
+      { name: 'Email Analysis', description: 'Paste raw email content or upload .eml files for analysis' },
+      { name: 'ML Detection', description: 'Uses trained model to identify phishing vs legitimate emails' },
+      { name: 'Threat Detection', description: 'Analyzes suspicious links, spoofed domains, urgent language, and dangerous attachments' },
+      { name: 'Risk Assessment', description: 'Provides verdict, confidence score, and key security flags' }
+    ]
   },
   {
     title: 'Mini JS Framework',
