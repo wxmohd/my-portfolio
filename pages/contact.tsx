@@ -178,7 +178,7 @@ export default function ContactSection() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all bg-white shadow-sm"
-                  placeholder="your.email@example.com"
+                  placeholder="walaamohamedj@gmail.com"
                 />
               </motion.div>
               

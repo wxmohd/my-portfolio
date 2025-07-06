@@ -14,7 +14,7 @@ const projects = [
     icon: <FaCode className="text-red-500" size={24} />,
     tech: ['Python', 'Flask', 'Next.js', 'Tailwind CSS', 'scikit-learn'],
     features: [
-      { name: 'Email Analysis', description: 'Paste raw email content or upload .eml files for analysis' },
+      { name: 'Email Analysis', description: 'Paste raw email content for analysis' },
       { name: 'ML Detection', description: 'Uses trained model to identify phishing vs legitimate emails' },
       { name: 'Threat Detection', description: 'Analyzes suspicious links, spoofed domains, urgent language, and dangerous attachments' },
       { name: 'Risk Assessment', description: 'Provides verdict, confidence score, and key security flags' }
