@@ -260,13 +260,13 @@ export default function Home() {
         <AboutSection />
       </section>
       
-      {/* Projects Section */}
-      <section id="projects" className="min-h-[100vh] py-20 pt-24">
+      {/* Projects Section - with smooth transition from About section */}
+      <section id="projects" className="min-h-[100vh] py-20 pt-24 -mt-12 sm:-mt-16 md:mt-0" style={{ backgroundColor: '#e6f4ff' }}>
         <ProjectsSection />
       </section>
       
-      {/* Contact Section */}
-      <section id="contact" className="min-h-[100vh] py-20 pt-24">
+      {/* Contact Section - with smooth transition from Projects section */}
+      <section id="contact" className="min-h-[100vh] py-20 pt-24 -mt-12 sm:-mt-16 md:mt-0" style={{ backgroundColor: '#e6f4ff' }}>
         <ContactSection />
       </section>
     </div>
