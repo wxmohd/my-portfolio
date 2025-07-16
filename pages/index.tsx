@@ -294,8 +294,7 @@ export default function Home() {
               
               {/* Enhanced profile image with interactive hover effects - smaller size */}
               <motion.div 
-                className="relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl" 
-                style={{ width: '280px', height: '280px', margin: '0 auto' }}
+                className="relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 mx-auto" 
                 whileHover={{ 
                   boxShadow: '0 0 30px rgba(0, 191, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.3)'
                 }}
@@ -332,25 +331,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-        >
-          <motion.div 
-            className="w-6 h-10 rounded-full border-2 border-primary flex justify-center pt-2"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            <motion.div 
-              className="w-1 h-2 bg-primary rounded-full"
-              animate={{ opacity: [1, 0, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </motion.div>
-        </motion.div>
+        {/* Removed scroll indicator */}
       </section>
       
       {/* About Section */}

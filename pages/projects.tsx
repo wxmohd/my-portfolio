@@ -127,10 +127,12 @@ export default function ProjectsSection() {
 
               <div className="flex items-center mb-6">
                 <h3 className="text-sm uppercase tracking-wider text-gray-500 mr-4">Tech Stack:</h3>
-                <div className="flex space-x-3">
-                  {project.tech.map((tech, index) => (
-                    <span key={index} className="text-gray-700 font-medium">{tech}</span>
-                  ))}
+                <div className="overflow-x-auto scrollbar-hide">
+                  <div className="flex space-x-3 min-w-max pb-2">
+                    {project.tech.map((tech, index) => (
+                      <span key={index} className="text-gray-700 font-medium whitespace-nowrap">{tech}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
 

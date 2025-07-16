@@ -219,7 +219,7 @@ export default function Navbar() {
               
               {/* LinkedIn */}
               <a 
-                href="https://www.linkedin.com/in/walaa-mohamed-b28604251" 
+                href="https://www.linkedin.com/in/walaa-mohamed-dev" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative"
@@ -430,7 +430,7 @@ export default function Navbar() {
               </a>
               
               <a 
-                href="https://www.linkedin.com/in/walaa-mohamed-b28604251" 
+                href="https://www.linkedin.com/in/walaa-mohamed-dev" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="group p-3 rounded-lg bg-darkBlue/40 text-cyan-400 border border-cyan-500/30 transition-all duration-300 hover:bg-darkBlue/60 hover:scale-110"
