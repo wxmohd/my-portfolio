@@ -195,21 +195,12 @@ export default function AboutSection() {
             }}
           />
           <motion.h1
-            className="font-serif text-6xl mb-6 font-black tracking-tight relative z-10"
+            className="text-5xl font-bold text-darkPurple mb-6 tracking-tight relative z-10"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-500 drop-shadow-sm">About Me</span>
-            <motion.span 
-              className="inline-flex items-center ml-3"
-              initial={{ opacity: 0.9 }}
-              animate={{ opacity: [0.9, 1, 0.9] }}
-              transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
-            >
-              <BsShieldLock className="text-blue-600 mr-2" size={24} />
-              <FaCode className="text-indigo-600" size={22} />
-            </motion.span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">About</span>
           </motion.h1>
           
           <motion.div 
