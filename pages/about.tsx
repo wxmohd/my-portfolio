@@ -78,9 +78,9 @@ export default function AboutSection() {
       color: "from-violet-600 to-purple-500"
     },
     {
-      category: "SOC Operations",
-      examples: "Triage, rules, playbooks, email alerts",
-      level: 3,
+      category: "Security Automation & SOAR",
+      examples: "Wazuh webhooks, Shuffle workflows, automated email alerts",
+      level: 2,
       color: "from-red-600 to-orange-500"
     },
     {

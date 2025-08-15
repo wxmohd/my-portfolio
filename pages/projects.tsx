@@ -7,16 +7,16 @@ import { BsArrowRight, BsCodeSlash } from 'react-icons/bs'
 const projects = [
   {
     title: 'PhishSecure',
-    description: 'A web-based application that uses machine learning to detect phishing emails based on message content and structure. Users can paste an email for risk assessment.',
+    description: 'A web-based application that uses machine learning to detect phishing emails based on email address. Users can paste an email for risk assessment.',
     link: 'https://github.com/wxmohd/PhishSecure',
     demoLink: '#',
     tags: ['Machine Learning', 'Next.js', 'Flask', 'Security'],
     icon: <FaCode className="text-red-500" size={24} />,
     tech: ['Python', 'Flask', 'Next.js', 'Tailwind CSS', 'scikit-learn'],
     features: [
-      { name: 'Email Analysis', description: 'Paste raw email content for analysis' },
+      { name: 'Email Analysis', description: 'Paste email address for analysis' },
       { name: 'ML Detection', description: 'Uses trained model to identify phishing vs legitimate emails' },
-      { name: 'Threat Detection', description: 'Analyzes suspicious links, spoofed domains, urgent language, and dangerous attachments' },
+      // { name: 'Threat Detection', description: 'Analyzes suspicious links, spoofed domains, urgent language, and dangerous attachments' },
       { name: 'Risk Assessment', description: 'Provides verdict, confidence score, and key security flags' }
     ]
   },
