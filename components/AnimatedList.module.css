@@ -1,0 +1,87 @@
+.animated-list-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.animated-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.animated-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.animated-list::-webkit-scrollbar-track {
+  background: rgba(10, 10, 20, 0.5);
+  border-radius: 3px;
+}
+
+.animated-list::-webkit-scrollbar-thumb {
+  background: rgba(129, 75, 210, 0.5);
+  border-radius: 3px;
+}
+
+.animated-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(129, 75, 210, 0.7);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.animated-list-item {
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.animated-list-item:hover {
+  background: rgba(129, 75, 210, 0.15);
+  border-color: rgba(129, 75, 210, 0.3);
+}
+
+.selected {
+  background: rgba(129, 75, 210, 0.15);
+  border-color: rgba(129, 75, 210, 0.3);
+}
+
+.animated-list-item-text {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.animated-list-top-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(10, 10, 15, 1), transparent);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.animated-list-bottom-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to top, rgba(10, 10, 15, 1), transparent);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  border-radius: 0 0 0.75rem 0.75rem;
+}

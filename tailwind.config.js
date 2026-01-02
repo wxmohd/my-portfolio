@@ -7,19 +7,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#00BFFF', // Deep sky blue
-        secondary: '#3A86FF', // Blue
-        accent: '#00FFFF', // Cyan for tech feel
-        dark: '#0F172A', // Dark blue for contrast
-        light: '#F0F9FF', // Light blue background
-        techGray: '#1E1E2E', // Dark tech background
-        neonBlue: '#00F0FF', // Neon blue for accents
-        darkBlue: '#172554', // Dark blue
-        mint: '#4ADE80', // Mint green accent
+        primary: '#814bd2', // Purple accent
+        secondary: '#6366f1', // Indigo
+        accent: '#a855f7', // Light purple
+        dark: '#0a0a0f', // Deep dark background
+        light: '#e2e8f0', // Light text
+        techGray: '#1a1a2e', // Dark card background
+        surface: '#12121a', // Slightly lighter surface
+        muted: '#94a3b8', // Muted text
         gradient: {
-          start: '#00BFFF',
-          mid: '#3A86FF',
-          end: '#00FFFF',
+          start: '#814bd2',
+          mid: '#6366f1',
+          end: '#a855f7',
         }
       },
       fontFamily: {

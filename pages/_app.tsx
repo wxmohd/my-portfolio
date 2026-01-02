@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Head from 'next/head';
 import '../styles/globals.css';
-import Navbar from '../components/Navbar';
+import DotGrid from '../components/DotGrid';
+import Dock from '../components/Dock';
+import { FaHome, FaUser, FaCode, FaEnvelope } from 'react-icons/fa';
 
 export default function App({ Component, pageProps, router }: AppProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -54,7 +56,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
       {isLoading ? (
         // Loading screen
-        <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-light to-lavender z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-dark z-50">
           <motion.div
             className="relative"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -87,7 +89,29 @@ export default function App({ Component, pageProps, router }: AppProps) {
               <div className="absolute bottom-[20%] left-[10%] w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-accent/5 to-mint/5 blur-[120px]" />
             </div>
 
-            <Navbar />
+            {/* Global DotGrid background */}
+            <div className="fixed inset-0 -z-10">
+              <DotGrid
+                dotSize={2}
+                gap={20}
+                baseColor="rgba(255,255,255,0.06)"
+                activeColor="#814bd2"
+                proximity={100}
+              />
+            </div>
+
+            {/* Dock navigation at top */}
+            <Dock
+              items={[
+                { icon: <FaHome size={18} />, label: 'Home', onClick: () => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }) },
+                { icon: <FaUser size={18} />, label: 'About', onClick: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
+                { icon: <FaCode size={18} />, label: 'Projects', onClick: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) },
+                { icon: <FaEnvelope size={18} />, label: 'Contact', onClick: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) },
+              ]}
+              panelHeight={48}
+              baseItemSize={40}
+              magnification={56}
+            />
 
             <AnimatePresence mode="wait">
               <motion.main 
@@ -103,10 +127,10 @@ export default function App({ Component, pageProps, router }: AppProps) {
             </AnimatePresence>
 
             {/* Footer */}
-            <footer className="py-6 px-4 text-center text-dark/60 text-sm">
+            <footer className="py-6 px-4 text-center text-muted text-sm bg-dark">
               <div className="max-w-6xl mx-auto">
                 <p>© {new Date().getFullYear()} Walaa Mohamed. All rights reserved.</p>
-                <p className="mt-2 text-xs">Designed with 💖</p>
+                <p className="mt-2 text-xs text-muted/60">Designed with 💖</p>
               </div>
             </footer>
           </div>

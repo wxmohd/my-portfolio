@@ -54,25 +54,25 @@ export default function ProjectsSection() {
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12">
+    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-8 sm:py-12">
       {/* Header */}
       <div className="text-center mb-8">
         <motion.h1
-          className="text-5xl font-bold text-darkPurple mb-4 tracking-tight"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-light mb-4 tracking-tight"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">My Recent Projects</span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">My Recent Projects</span>
         </motion.h1>
         <motion.div
-          className="h-1 w-24 bg-gradient-to-r from-indigo-500 to-blue-500 mx-auto rounded-full mb-6"
+          className="h-1 w-24 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6"
           initial={{ width: 0 }}
           animate={{ width: 96 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         />
         <motion.p 
-          className="text-gray-600 max-w-2xl mx-auto text-lg font-light"
+          className="text-muted max-w-2xl mx-auto text-base sm:text-lg font-light px-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -87,50 +87,50 @@ export default function ProjectsSection() {
         {projects.map((project, i) => (
           <motion.div
             key={i}
-            className="bg-white rounded-xl shadow-xl overflow-hidden"
+            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl shadow-xl overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.2 }}
           >
-            <div className="p-8 md:p-10">
-              <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
-                <div className="flex items-center mb-4 md:mb-0">
-                  <div className="mr-4 p-3 bg-gray-100 rounded-lg">
+            <div className="p-4 sm:p-6 md:p-10">
+              <div className="flex flex-col gap-4 mb-6">
+                <div className="flex items-center">
+                  <div className="mr-3 sm:mr-4 p-2 sm:p-3 bg-white/10 rounded-lg shrink-0">
                     {project.icon}
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
                     {project.title}
                   </h2>
                 </div>
-                <div className="flex space-x-3">
+                <div className="flex">
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+                    className="flex items-center px-4 py-2 bg-white/10 text-light rounded-lg hover:bg-primary/20 border border-white/10 hover:border-primary/30 transition"
                   >
                     <FaGithub className="mr-2" /> GitHub
                   </a>
                 </div>
               </div>
 
-              <p className="text-gray-700 mb-6 leading-relaxed">{project.description}</p>
+              <p className="text-muted mb-6 leading-relaxed">{project.description}</p>
 
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-indigo-100 text-indigo-800 text-sm rounded-full">
+                  <span key={index} className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20">
                     {tag}
                   </span>
                 ))}
               </div>
 
               <div className="flex items-center mb-6">
-                <h3 className="text-sm uppercase tracking-wider text-gray-500 mr-4">Tech Stack:</h3>
+                <h3 className="text-sm uppercase tracking-wider text-muted mr-4">Tech Stack:</h3>
                 <div className="overflow-x-auto scrollbar-hide">
                   <div className="flex space-x-3 min-w-max pb-2">
                     {project.tech.map((tech, index) => (
-                      <span key={index} className="text-gray-700 font-medium whitespace-nowrap">{tech}</span>
+                      <span key={index} className="text-light font-medium whitespace-nowrap">{tech}</span>
                     ))}
                   </div>
                 </div>
@@ -140,7 +140,7 @@ export default function ProjectsSection() {
               {'features' in project && (
                 <div className="mt-6">
                   <motion.button
-                    className="flex items-center text-indigo-600 font-medium"
+                    className="flex items-center text-primary font-medium"
                     onClick={() => setActiveProject(activeProject === i ? null : i)}
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
@@ -159,11 +159,11 @@ export default function ProjectsSection() {
                         transition={{ duration: 0.3 }}
                       >
                         {project.features.map((feature, idx) => (
-                          <div key={idx} className="bg-gray-50 p-4 rounded-lg">
-                            <h4 className="font-bold text-indigo-700 mb-2 flex items-center">
+                          <div key={idx} className="bg-white/5 p-4 rounded-lg border border-white/10">
+                            <h4 className="font-bold text-primary mb-2 flex items-center">
                               <BsCodeSlash className="mr-2" /> {feature.name}
                             </h4>
-                            <p className="text-gray-600 text-sm">{feature.description}</p>
+                            <p className="text-muted text-sm">{feature.description}</p>
                           </div>
                         ))}
                       </motion.div>
@@ -175,7 +175,7 @@ export default function ProjectsSection() {
               {'dockerSetup' in project && (
                 <div className="mt-6">
                   <motion.button
-                    className="flex items-center text-indigo-600 font-medium"
+                    className="flex items-center text-primary font-medium"
                     onClick={() => setActiveProject(activeProject === i ? null : i)}
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
@@ -194,12 +194,12 @@ export default function ProjectsSection() {
                         transition={{ duration: 0.3 }}
                       >
                         {project.dockerSetup.map((container, idx) => (
-                          <div key={idx} className="bg-gray-50 p-4 rounded-lg">
-                            <h4 className="font-bold text-blue-700 mb-2 flex items-center">
+                          <div key={idx} className="bg-white/5 p-4 rounded-lg border border-white/10">
+                            <h4 className="font-bold text-secondary mb-2 flex items-center">
                               {idx === 0 ? <FaServer className="mr-2" /> : <FaReact className="mr-2" />}
                               {container.name}
                             </h4>
-                            <p className="text-gray-600 text-sm">{container.description}</p>
+                            <p className="text-muted text-sm">{container.description}</p>
                           </div>
                         ))}
                       </motion.div>
@@ -224,7 +224,7 @@ export default function ProjectsSection() {
           href="https://github.com/wxmohd" 
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition shadow-lg hover:shadow-xl"
+          className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition shadow-lg hover:shadow-xl"
         >
           <FaGithub className="mr-2" size={18} />
           <span>View More Projects on GitHub</span>

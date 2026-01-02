@@ -7,6 +7,21 @@ import { BiSolidAnalyse } from 'react-icons/bi'
 import { RiShieldKeyholeFill, RiUserHeartLine } from 'react-icons/ri'
 import { BsShieldLock, BsFileEarmarkCode } from 'react-icons/bs'
 import { MdSecurity, MdTimeline } from 'react-icons/md'
+import AnimatedList from '../components/AnimatedList'
+
+// Security tools list for AnimatedList
+const securityTools = [
+  '🔒 Wazuh SIEM - Security monitoring & threat detection',
+  '🦈 Wireshark - Network protocol analyzer',
+  '🐉 Kali Linux - Penetration testing distribution',
+  '💀 Metasploit - Exploitation framework',
+  '🔍 Nmap - Network discovery & security auditing',
+  '🛡️ Suricata - Network threat detection engine',
+  '🔐 Burp Suite - Web security testing',
+  '📊 Splunk - Log analysis & SIEM',
+  '🕵️ OSINT Tools - Open source intelligence',
+  '⚡ PowerShell - Security automation',
+]
 
 // Icon animation variants
 const iconVariants = {
@@ -21,8 +36,8 @@ const iconVariants = {
 }
 
 const techSkills = [
-  { name: 'React', icon: <motion.div whileHover="hover" variants={iconVariants}><FaReact size={40} className="text-blue-500" /></motion.div> },
-  { name: 'Next.js', icon: <motion.div whileHover="hover" variants={iconVariants}><SiNextdotjs size={40} className="text-black" /></motion.div> },
+  { name: 'React', icon: <motion.div whileHover="hover" variants={iconVariants}><FaReact size={40} className="text-blue-400" /></motion.div> },
+  { name: 'Next.js', icon: <motion.div whileHover="hover" variants={iconVariants}><SiNextdotjs size={40} className="text-white" /></motion.div> },
   { name: 'Tailwind', icon: <motion.div whileHover="hover" variants={iconVariants}><SiTailwindcss size={40} className="text-cyan-400" /></motion.div> },
   { name: 'TypeScript', icon: <motion.div whileHover="hover" variants={iconVariants}><SiTypescript size={40} className="text-blue-700" /></motion.div> },
   { name: 'Python', icon: <motion.div whileHover="hover" variants={iconVariants}><FaPython size={40} className="text-yellow-500" /></motion.div> },
@@ -183,7 +198,7 @@ export default function AboutSection() {
       >
         <div className="relative mb-8">
           <motion.div 
-            className="absolute -inset-10 bg-gradient-to-r from-purple-200/30 to-blue-200/30 rounded-full blur-3xl opacity-70 z-0"
+            className="absolute -inset-10 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-3xl opacity-50 z-0"
             animate={{ 
               scale: [1, 1.05, 1],
               opacity: [0.5, 0.7, 0.5]
@@ -195,32 +210,32 @@ export default function AboutSection() {
             }}
           />
           <motion.h1
-            className="text-5xl font-bold text-darkPurple mb-6 tracking-tight relative z-10"
+            className="text-5xl font-bold text-light mb-6 tracking-tight relative z-10"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">About</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">About</span>
           </motion.h1>
           
           <motion.div 
-            className="h-1 w-32 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mx-auto mb-6"
+            className="h-1 w-32 bg-gradient-to-r from-primary to-accent rounded-full mx-auto mb-6"
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: 128, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           />
 
           <motion.p
-            className="text-gray-700 mb-10 max-w-2xl mx-auto font-light text-lg leading-relaxed relative z-10"
+            className="text-muted mb-10 max-w-2xl mx-auto font-light text-lg leading-relaxed relative z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
             I'm a<span className="mx-1"></span>
-            <span className="font-medium text-indigo-600 relative inline-block">
+            <span className="font-medium text-primary relative inline-block">
             cybersecurity student
               <motion.span 
-                className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-indigo-300"
+                className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-primary/50"
                 initial={{ width: 0 }}
                 whileInView={{ width: '100%' }}
                 viewport={{ once: true }}
@@ -241,10 +256,10 @@ export default function AboutSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-2xl font-bold text-darkPurple mb-8 text-center relative inline-block">
+        <h2 className="text-2xl font-bold text-light mb-8 text-center relative inline-block">
           <span className="relative z-10">Development Stack</span>
           <motion.span 
-            className="absolute -bottom-2 left-0 w-full h-2 bg-yellow-300 z-0" 
+            className="absolute -bottom-2 left-0 w-full h-2 bg-primary/30 z-0 rounded-full" 
             initial={{ width: 0 }}
             whileInView={{ width: '100%' }}
             viewport={{ once: true }}
@@ -255,14 +270,14 @@ export default function AboutSection() {
           {techSkills.map((skill, i) => (
             <motion.div
               key={i}
-              className="flex flex-col items-center justify-center bg-white shadow-lg rounded-xl p-4 hover:shadow-xl transition"
+              className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 shadow-lg rounded-xl p-4 hover:border-primary/30 hover:shadow-xl transition"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
             >
               {skill.icon}
-              <p className="mt-2 text-sm text-darkPurple font-semibold">{skill.name}</p>
+              <p className="mt-2 text-sm text-light font-semibold">{skill.name}</p>
             </motion.div>
           ))}
         </div>
@@ -276,10 +291,10 @@ export default function AboutSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <h2 className="text-2xl font-bold text-darkPurple mb-8 text-center relative inline-block">
-          <span className="relative z-10"><BsShieldLock className="inline-block mr-2 text-blue-600" size={20} /> Cyber Skills & Tools</span>
+        <h2 className="text-2xl font-bold text-light mb-8 text-center relative inline-block">
+          <span className="relative z-10"><BsShieldLock className="inline-block mr-2 text-primary" size={20} /> Cyber Skills & Tools</span>
           <motion.span 
-            className="absolute -bottom-2 left-0 w-full h-2 bg-blue-300 z-0" 
+            className="absolute -bottom-2 left-0 w-full h-2 bg-secondary/30 z-0 rounded-full" 
             initial={{ width: 0 }}
             whileInView={{ width: '100%' }}
             viewport={{ once: true }}
@@ -290,15 +305,15 @@ export default function AboutSection() {
         {/* Security Skills - Floating Cards */}
         <div className="relative py-4 px-2 overflow-hidden">
           {/* Background decorative elements */}
-          <div className="absolute inset-0 opacity-10 z-0 overflow-hidden">
-            <div className="absolute top-10 left-10 w-40 h-40 bg-blue-200 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-5 right-10 w-60 h-60 bg-indigo-200 rounded-full blur-3xl"></div>
-            <div className="absolute top-1/3 left-1/2 w-32 h-32 bg-purple-200 rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 opacity-20 z-0 overflow-hidden">
+            <div className="absolute top-10 left-10 w-40 h-40 bg-primary rounded-full blur-3xl"></div>
+            <div className="absolute bottom-5 right-10 w-60 h-60 bg-secondary rounded-full blur-3xl"></div>
+            <div className="absolute top-1/3 left-1/2 w-32 h-32 bg-accent rounded-full blur-3xl"></div>
           </div>
           
           {/* Header */}
           <motion.div 
-            className="relative z-10 flex items-center justify-between mb-8 bg-white/60 backdrop-blur-sm rounded-xl p-3 shadow-lg border border-blue-100"
+            className="relative z-10 flex items-center justify-between mb-8 bg-white/5 backdrop-blur-md rounded-xl p-3 shadow-lg border border-white/10"
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -309,16 +324,16 @@ export default function AboutSection() {
                 initial={{ rotate: 0 }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                className="mr-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full p-2 shadow-md"
+                className="mr-3 bg-gradient-to-r from-primary to-secondary rounded-full p-2 shadow-md"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </motion.div>
-              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Security Expertise</h3>
+              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Security Expertise</h3>
             </div>
-            <span className="text-xs text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full border border-indigo-200 flex items-center shadow-sm">
-              <span className="w-2 h-2 bg-indigo-500 rounded-full mr-1.5 animate-pulse"></span>
+            <span className="text-xs text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 flex items-center shadow-sm">
+              <span className="w-2 h-2 bg-primary rounded-full mr-1.5 animate-pulse"></span>
               2025 Edition
             </span>
           </motion.div>
@@ -335,7 +350,7 @@ export default function AboutSection() {
                 transition={{ delay: index * 0.1, duration: 0.5 }}
               >
                 <motion.div 
-                  className={`bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-3 sm:p-4 h-full flex flex-col overflow-hidden relative group`}
+                  className={`bg-white/5 backdrop-blur-md rounded-lg shadow-lg p-3 sm:p-4 h-full flex flex-col overflow-hidden relative group border border-white/10`}
                   whileHover={{ y: -8, scale: 1.02, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)' }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -344,38 +359,11 @@ export default function AboutSection() {
                   
                   {/* Skill header */}
                   <div className="flex flex-wrap items-center mb-2 sm:mb-3 pl-2">
-                    <h4 className="text-gray-800 font-bold text-sm sm:text-base">{skill.category}</h4>
-                    <div className="ml-auto flex">
-                      {[...Array(5)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: i * 0.1 }}
-                          className="relative"
-                        >
-                          <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            className={`h-3 w-3 sm:h-3.5 sm:w-3.5 ${i < skill.level ? `text-${skill.color.split(' ')[1]}` : 'text-gray-200'}`} 
-                            viewBox="0 0 20 20" 
-                            fill="currentColor"
-                          >
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                          {i < skill.level && (
-                            <motion.div 
-                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0"
-                              animate={{ opacity: [0, 0.5, 0], x: ["-100%", "100%"] }}
-                              transition={{ duration: 2, repeat: Infinity, repeatDelay: i * 0.5 + 2 }}
-                            />
-                          )}
-                        </motion.div>
-                      ))}
-                    </div>
+                    <h4 className="text-light font-bold text-sm sm:text-base">{skill.category}</h4>
                   </div>
                   
                   {/* Skill details */}
-                  <div className="bg-gradient-to-br from-gray-50 to-white px-2 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm text-gray-600 font-mono flex-grow flex items-center border border-gray-100 shadow-inner">
+                  <div className="bg-white/5 px-2 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm text-muted font-mono flex-grow flex items-center border border-white/5">
                     {skill.examples}
                   </div>
                   
@@ -394,6 +382,35 @@ export default function AboutSection() {
         </div>
       </motion.div>
       
+      {/* Security Tools - Animated List */}
+      <motion.div
+        className="mb-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-2xl font-bold text-light mb-8 text-center relative inline-block">
+          <span className="relative z-10"><FaTerminal className="inline-block mr-2 text-accent" size={20} /> Security Toolkit</span>
+          <motion.span 
+            className="absolute -bottom-2 left-0 w-full h-2 bg-accent/30 z-0 rounded-full" 
+            initial={{ width: 0 }}
+            whileInView={{ width: '100%' }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          />
+        </h2>
+        <div className="flex justify-center">
+          <AnimatedList
+            items={securityTools}
+            onItemSelect={(item, index) => console.log(`Selected: ${item}`)}
+            showGradients={true}
+            enableArrowNavigation={true}
+            displayScrollbar={false}
+          />
+        </div>
+      </motion.div>
+
       {/* Interactive Terminal */}
       <div className="mb-16 flex justify-center">
         <motion.div

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import ScrollStack, { ScrollStackItem } from '../components/ScrollStack';
 
 // Import components from other pages
 import AboutSection from './about';
@@ -59,14 +60,13 @@ export default function Home() {
 
   return (
     <div className="relative">
-      {/* Home Section - Modern Asymmetric Design */}
-      <section id="home" className="relative min-h-[100vh] flex items-center pt-16 pb-24 sm:pb-32" style={{ backgroundColor: '#e6f4ff' }}>
-        {/* Solid light blue background - no patterns or design elements */}
-        <div className="absolute inset-0 -z-20 overflow-hidden">
-          <div 
-            className="absolute inset-0" 
-            style={{ backgroundColor: '#e6f4ff' }}
-          />
+      {/* Home Section - Dark Glassmorphism Design */}
+      <section id="home" className="relative min-h-[100vh] flex items-center pt-16 pb-24 sm:pb-32">
+        {/* Gradient orbs for glassmorphism effect */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
         </div>
 
         {/* Main content with asymmetric layout */}
@@ -81,31 +81,31 @@ export default function Home() {
             {/* Animated badges */}
             <div className="flex flex-wrap gap-3 mb-6">
               <motion.div 
-                className="inline-block bg-darkBlue/20 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-1 text-sm font-mono text-darkBlue font-medium"
+                className="inline-block bg-white/5 backdrop-blur-md border border-primary/30 rounded-full px-4 py-1 text-sm font-mono text-light font-medium"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                whileHover={{ scale: 1.05, backgroundColor: 'rgba(0, 191, 255, 0.15)' }}
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(129, 75, 210, 0.15)' }}
               >
                 <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-                Cybersecurity Specialist
+                Cybersecurity Student
               </motion.div>
               
               <motion.div 
-                className="inline-block bg-darkBlue/20 backdrop-blur-sm border border-accent/30 rounded-full px-4 py-1 text-sm font-mono text-darkBlue font-medium"
+                className="inline-block bg-white/5 backdrop-blur-md border border-accent/30 rounded-full px-4 py-1 text-sm font-mono text-light font-medium"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
-                whileHover={{ scale: 1.05, backgroundColor: 'rgba(0, 255, 255, 0.15)' }}
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(168, 85, 247, 0.15)' }}
               >
                 <span className="inline-block w-2 h-2 rounded-full bg-accent mr-2 animate-pulse"></span>
-                Full-Stack Developer
+                Full-Stack Developement Student
               </motion.div>
             </div>
 
             {/* Main heading with 3D effect */}
             <div className="relative mb-4">
-              <h1 className="text-5xl md:text-7xl font-bold mb-2 tracking-tight text-darkBlue">
+              <h1 className="text-5xl md:text-7xl font-bold mb-2 tracking-tight text-light">
                 Hello, I'm{' '}
                 <div className="relative inline-block">
                   <span 
@@ -113,7 +113,7 @@ export default function Home() {
                     style={{ 
                       fontFamily: "'Space Grotesk', sans-serif",
                       letterSpacing: '-0.02em',
-                      background: 'linear-gradient(90deg, #00a2ff, #3a8dff, #00b8ff, #00f2ff)',
+                      background: 'linear-gradient(90deg, #814bd2, #6366f1, #a855f7, #6366f1)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent'
                     }}
@@ -121,8 +121,8 @@ export default function Home() {
                     Walaa Mohamed
                   </span>
                   <div 
-                    className="absolute -bottom-2 left-0 w-full h-1"
-                    style={{ backgroundColor: '#00a2ff', boxShadow: 'none' }}
+                    className="absolute -bottom-2 left-0 w-full h-1 rounded-full"
+                    style={{ background: 'linear-gradient(90deg, #814bd2, #a855f7)', boxShadow: '0 0 20px rgba(129, 75, 210, 0.5)' }}
                   ></div>
                 </div>
               </h1>
@@ -130,13 +130,13 @@ export default function Home() {
 
             {/* Enhanced description with cybersecurity and development focus */}
             <motion.p 
-              className="text-xl md:text-2xl mb-8 text-dark font-normal"
+              className="text-xl md:text-2xl mb-8 text-muted font-normal"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Bridging the gap between <span className="font-semibold text-darkBlue">secure systems</span> and <br className="hidden md:block" />
-              <span className="font-semibold text-darkBlue">cutting-edge</span> web development solutions.
+              Bridging the gap between <span className="font-semibold text-light">secure systems</span> and <br className="hidden md:block" />
+              <span className="font-semibold text-light">cutting-edge</span> web development solutions.
             </motion.p>
             
             {/* Animated Tech Icons */}
@@ -147,7 +147,7 @@ export default function Home() {
               {['react', 'typescript', 'figma', 'nextjs'].map((tech, index) => (
                 <motion.div 
                   key={tech}
-                  className="text-dark/70 hover:text-primary transition-colors"
+                  className="text-muted hover:text-primary transition-colors"
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -252,23 +252,49 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Removed scroll indicator */}
       </section>
       
-      {/* About Me Section - with smooth transition from Home section */}
-      <section id="about" className="py-20 -mt-12 sm:-mt-16 md:mt-0" style={{ backgroundColor: '#e6f4ff' }}>
-        <AboutSection />
-      </section>
-      
-      {/* Projects Section - with smooth transition from About section */}
-      <section id="projects" className="min-h-[100vh] py-20 pt-24 -mt-12 sm:-mt-16 md:mt-0" style={{ backgroundColor: '#e6f4ff' }}>
-        <ProjectsSection />
-      </section>
-      
-      {/* Contact Section - with smooth transition from Projects section */}
-      <section id="contact" className="min-h-[100vh] py-20 pt-24 -mt-12 sm:-mt-16 md:mt-0" style={{ backgroundColor: '#e6f4ff' }}>
-        <ContactSection />
-      </section>
+      {/* ScrollStack Sections */}
+      <ScrollStack
+        useWindowScroll={true}
+        itemDistance={1500}
+        itemScale={0.005}
+        itemStackDistance={8}
+        stackPosition="0%"
+        scaleEndPosition="0%"
+        baseScale={1}
+        blurAmount={0}
+      >
+        {/* About Me Section */}
+        <ScrollStackItem>
+          <section id="about" className="relative">
+            <div className="absolute inset-0 -z-10 overflow-hidden">
+              <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-secondary/10 rounded-full blur-3xl" />
+            </div>
+            <AboutSection />
+          </section>
+        </ScrollStackItem>
+        
+        {/* Projects Section */}
+        <ScrollStackItem>
+          <section id="projects" className="relative">
+            <div className="absolute inset-0 -z-10 overflow-hidden">
+              <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+            </div>
+            <ProjectsSection />
+          </section>
+        </ScrollStackItem>
+        
+        {/* Contact Section */}
+        <ScrollStackItem>
+          <section id="contact" className="relative">
+            <div className="absolute inset-0 -z-10 overflow-hidden">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+            </div>
+            <ContactSection />
+          </section>
+        </ScrollStackItem>
+      </ScrollStack>
     </div>
   );
 }
