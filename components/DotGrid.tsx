@@ -74,6 +74,7 @@ const DotGrid = ({
     const wrap = wrapperRef.current;
     const canvas = canvasRef.current;
     if (!wrap || !canvas) return;
+    if (typeof window === 'undefined') return;
 
     const { width, height } = wrap.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
@@ -156,17 +157,24 @@ const DotGrid = ({
   }, [proximity, baseColor, activeRgb, baseRgb, circlePath]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     buildGrid();
     let ro: ResizeObserver | null = null;
+    
     if ('ResizeObserver' in window) {
       ro = new ResizeObserver(buildGrid);
       wrapperRef.current && ro.observe(wrapperRef.current);
     } else {
-      window.addEventListener('resize', buildGrid);
+      (window as Window).addEventListener('resize', buildGrid);
     }
+    
     return () => {
-      if (ro) ro.disconnect();
-      else window.removeEventListener('resize', buildGrid);
+      if (ro) {
+        ro.disconnect();
+      } else {
+        (window as Window).removeEventListener('resize', buildGrid);
+      }
     };
   }, [buildGrid]);
 
