@@ -44,7 +44,6 @@
 
 .scroll-stack-card {
   transform-origin: top center;
-  will-change: transform;
   backface-visibility: hidden;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   height: auto;
@@ -59,11 +58,16 @@
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  /* Smooth CSS transitions for transform - reduces shakiness */
-  transition: transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1), filter 0.2s ease-out;
   /* Entrance animation */
   animation: cardFallIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   opacity: 0;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  .scroll-stack-card {
+    backdrop-filter: blur(10px);
+  }
 }
 
 

@@ -211,16 +211,17 @@ const ScrollStack = ({
 
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
       const lenis = new Lenis({
-        duration: 1.6,
-        easing: (t: number) => 1 - Math.pow(1 - t, 4),
+        duration: isMobile ? 0.8 : 1.2,
+        easing: (t: number) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
-        touchMultiplier: 1.2,
+        touchMultiplier: isMobile ? 1.5 : 1.2,
         infinite: false,
-        wheelMultiplier: 0.6,
-        lerp: 0.05,
+        wheelMultiplier: 0.8,
+        lerp: isMobile ? 0.15 : 0.08,
         syncTouch: true,
-        syncTouchLerp: 0.04
+        syncTouchLerp: isMobile ? 0.15 : 0.08
       });
 
       lenis.on('scroll', handleScroll);
@@ -237,19 +238,20 @@ const ScrollStack = ({
       const scroller = scrollerRef.current;
       if (!scroller) return;
 
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
       const lenis = new Lenis({
         wrapper: scroller,
         content: scroller.querySelector(`.${styles['scroll-stack-inner']}`) as HTMLElement,
-        duration: 1.6,
-        easing: (t: number) => 1 - Math.pow(1 - t, 4),
+        duration: isMobile ? 0.8 : 1.2,
+        easing: (t: number) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
-        touchMultiplier: 1.2,
+        touchMultiplier: isMobile ? 1.5 : 1.2,
         infinite: false,
         gestureOrientation: 'vertical',
-        wheelMultiplier: 0.6,
-        lerp: 0.05,
+        wheelMultiplier: 0.8,
+        lerp: isMobile ? 0.15 : 0.08,
         syncTouch: true,
-        syncTouchLerp: 0.04,
+        syncTouchLerp: isMobile ? 0.15 : 0.08,
       });
 
       lenis.on('scroll', handleScroll);
