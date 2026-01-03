@@ -212,16 +212,25 @@ const ScrollStack = ({
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+      
+      // On mobile, use native scroll for better performance
+      if (isMobile) {
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // Initial call
+        return null;
+      }
+      
+      // Desktop: use Lenis smooth scroll
       const lenis = new Lenis({
-        duration: isMobile ? 0.8 : 1.2,
+        duration: 1.2,
         easing: (t: number) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
-        touchMultiplier: isMobile ? 1.5 : 1.2,
+        touchMultiplier: 1.2,
         infinite: false,
         wheelMultiplier: 0.8,
-        lerp: isMobile ? 0.15 : 0.08,
+        lerp: 0.08,
         syncTouch: true,
-        syncTouchLerp: isMobile ? 0.15 : 0.08
+        syncTouchLerp: 0.08
       });
 
       lenis.on('scroll', handleScroll);
@@ -309,6 +318,10 @@ const ScrollStack = ({
       }
       if (lenisRef.current) {
         lenisRef.current.destroy();
+      }
+      // Clean up native scroll listener on mobile
+      if (useWindowScroll && typeof window !== 'undefined' && window.innerWidth < 768) {
+        window.removeEventListener('scroll', handleScroll);
       }
       stackCompletedRef.current = false;
       cardsRef.current = [];
