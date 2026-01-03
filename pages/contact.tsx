@@ -78,7 +78,7 @@ export default function ContactSection() {
           >
             <FaEnvelope className="text-white" size={36} />
           </motion.div>
-          <h1 className="text-5xl font-bold text-light mb-4 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-light mb-4 tracking-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Let's Connect</span>
           </h1>
           <motion.div
