@@ -100,18 +100,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
               />
             </div>
 
-            {/* Dock navigation at top */}
-            <Dock
-              items={[
-                { icon: <FaHome size={18} />, label: 'Home', onClick: () => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }) },
-                { icon: <FaUser size={18} />, label: 'About', onClick: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
-                { icon: <FaCode size={18} />, label: 'Projects', onClick: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) },
-                { icon: <FaEnvelope size={18} />, label: 'Contact', onClick: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) },
-              ]}
-              panelHeight={48}
-              baseItemSize={40}
-              magnification={56}
-            />
 
             <AnimatePresence mode="wait">
               <motion.main 
