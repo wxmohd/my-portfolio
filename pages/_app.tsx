@@ -130,7 +130,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
             <footer className="py-6 px-4 text-center text-muted text-sm bg-dark">
               <div className="max-w-6xl mx-auto">
                 <p>© {new Date().getFullYear()} Walaa Mohamed. All rights reserved.</p>
-                <p className="mt-2 text-xs text-muted/60">Designed with 💖</p>
+                <p className="mt-2 text-xs text-muted/60">Designed with love</p>
               </div>
             </footer>
           </div>

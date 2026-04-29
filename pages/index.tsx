@@ -193,8 +193,7 @@ export default function Home() {
                   <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
                 </svg>
                 <span>View Projects</span>
-                <span className="ml-1 animate-bounce inline-block">✨</span>
-              </Link>
+                              </Link>
               <Link href="#contact" className="btn btn-outline relative flex items-center justify-center gap-2 px-6 py-3 overflow-hidden group">
                 {/* Diagonal overlay */}
                 <div className="absolute inset-0 overflow-hidden">
@@ -208,8 +207,7 @@ export default function Home() {
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                   <span>Contact Me</span>
-                  <span className="ml-1 text-xs relative top-0 animate-pulse">💌</span>
-                </div>
+                                  </div>
                 
                 {/* Animated dot */}
                 <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

@@ -11,16 +11,16 @@ import AnimatedList from '../components/AnimatedList'
 
 // Security tools list for AnimatedList
 const securityTools = [
-  '🔒 Wazuh SIEM - Security monitoring & threat detection',
-  '🦈 Wireshark - Network protocol analyzer',
-  '🐉 Kali Linux - Penetration testing distribution',
-  '💀 Metasploit - Exploitation framework',
-  '🔍 Nmap - Network discovery & security auditing',
-  '🛡️ Suricata - Network threat detection engine',
-  '🔐 Burp Suite - Web security testing',
-  '📊 Splunk - Log analysis & SIEM',
-  '🕵️ OSINT Tools - Open source intelligence',
-  '⚡ PowerShell - Security automation',
+  'Wazuh SIEM - Security monitoring & threat detection',
+  'Wireshark - Network protocol analyzer',
+  'Kali Linux - Penetration testing distribution',
+  'Metasploit - Exploitation framework',
+  'Nmap - Network discovery & security auditing',
+  'Suricata - Network threat detection engine',
+  'Burp Suite - Web security testing',
+  'Splunk - Log analysis & SIEM',
+  'OSINT Tools - Open source intelligence',
+  'PowerShell - Security automation',
 ]
 
 // Icon animation variants
@@ -64,7 +64,7 @@ const pulseVariants = {
 const terminalCommands = [
   { command: 'whoami', output: 'security-enthusiast' },
   { command: 'nmap -sV localhost', output: 'Starting Nmap scan...Scanning localhost...\n\nPORT     STATE  SERVICE\n22/tcp   open   ssh\n80/tcp   open   http\n443/tcp  open   https\n\nNmap done: 1 IP address scanned' },
-  { command: 'cat /etc/passwd', output: 'Permission denied: Nice try! 😉' },
+  { command: 'cat /etc/passwd', output: 'Permission denied: Nice try!' },
 ]
 
 interface SecuritySkill {
