@@ -165,14 +165,11 @@ const ScrollStack = ({
         Math.abs(lastTransform.blur - newTransform.blur) > 0.1;
 
       if (hasChanged) {
-        // Use requestAnimationFrame for smoother updates
-        requestAnimationFrame(() => {
-          const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale}) rotate(${newTransform.rotation}deg)`;
-          const filter = newTransform.blur > 0 ? `blur(${newTransform.blur}px)` : 'none';
+        const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale}) rotate(${newTransform.rotation}deg)`;
+        const filter = newTransform.blur > 0 ? `blur(${newTransform.blur}px)` : 'none';
 
-          card.style.transform = transform;
-          card.style.filter = filter;
-        });
+        card.style.transform = transform;
+        card.style.filter = filter;
 
         lastTransformsRef.current.set(i, newTransform);
       }
@@ -212,15 +209,15 @@ const ScrollStack = ({
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
       const lenis = new Lenis({
-        duration: 1.6,
-        easing: (t: number) => 1 - Math.pow(1 - t, 4),
+        duration: 1.0,
+        easing: (t: number) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
-        touchMultiplier: 1.2,
+        touchMultiplier: 1.5,
         infinite: false,
-        wheelMultiplier: 0.6,
-        lerp: 0.05,
+        wheelMultiplier: 1.0,
+        lerp: 0.12,
         syncTouch: true,
-        syncTouchLerp: 0.04
+        syncTouchLerp: 0.1
       });
 
       lenis.on('scroll', handleScroll);
@@ -240,16 +237,16 @@ const ScrollStack = ({
       const lenis = new Lenis({
         wrapper: scroller,
         content: scroller.querySelector(`.${styles['scroll-stack-inner']}`) as HTMLElement,
-        duration: 1.6,
-        easing: (t: number) => 1 - Math.pow(1 - t, 4),
+        duration: 1.0,
+        easing: (t: number) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
-        touchMultiplier: 1.2,
+        touchMultiplier: 1.5,
         infinite: false,
         gestureOrientation: 'vertical',
-        wheelMultiplier: 0.6,
-        lerp: 0.05,
+        wheelMultiplier: 1.0,
+        lerp: 0.12,
         syncTouch: true,
-        syncTouchLerp: 0.04,
+        syncTouchLerp: 0.1,
       });
 
       lenis.on('scroll', handleScroll);

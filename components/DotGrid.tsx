@@ -58,6 +58,7 @@ const DotGrid = ({
     x: -1000,
     y: -1000
   });
+  const dirtyRef = useRef(true);
 
   const baseRgb = useMemo(() => hexToRgb(baseColor.startsWith('#') ? baseColor : '#ffffff'), [baseColor]);
   const activeRgb = useMemo(() => hexToRgb(activeColor), [activeColor]);
@@ -117,6 +118,10 @@ const DotGrid = ({
     const proxSq = proximity * proximity;
 
     const draw = () => {
+      rafId = requestAnimationFrame(draw);
+      if (!dirtyRef.current) return;
+      dirtyRef.current = false;
+
       const canvas = canvasRef.current;
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
@@ -149,7 +154,6 @@ const DotGrid = ({
         ctx.restore();
       }
 
-      rafId = requestAnimationFrame(draw);
     };
 
     draw();
@@ -186,6 +190,7 @@ const DotGrid = ({
       const rect = canvas.getBoundingClientRect();
       pointerRef.current.x = e.clientX - rect.left;
       pointerRef.current.y = e.clientY - rect.top;
+      dirtyRef.current = true;
 
       // Simple push effect on nearby dots
       for (const dot of dotsRef.current) {
@@ -201,14 +206,16 @@ const DotGrid = ({
             xOffset: Math.cos(angle) * force * 5,
             yOffset: Math.sin(angle) * force * 5,
             duration: 0.3,
-            ease: 'power2.out'
+            ease: 'power2.out',
+            onUpdate: () => { dirtyRef.current = true; }
           });
         } else if (dot.xOffset !== 0 || dot.yOffset !== 0) {
           gsap.to(dot, {
             xOffset: 0,
             yOffset: 0,
             duration: 0.8,
-            ease: 'elastic.out(1,0.5)'
+            ease: 'elastic.out(1,0.5)',
+            onUpdate: () => { dirtyRef.current = true; }
           });
         }
       }
@@ -217,6 +224,7 @@ const DotGrid = ({
     const onLeave = () => {
       pointerRef.current.x = -1000;
       pointerRef.current.y = -1000;
+      dirtyRef.current = true;
       
       for (const dot of dotsRef.current) {
         gsap.to(dot, {

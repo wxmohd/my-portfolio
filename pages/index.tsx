@@ -255,7 +255,7 @@ export default function Home() {
       {/* ScrollStack Sections */}
       <ScrollStack
         useWindowScroll={true}
-        itemDistance={1500}
+        itemDistance={400}
         itemScale={0.005}
         itemStackDistance={8}
         stackPosition="0%"
