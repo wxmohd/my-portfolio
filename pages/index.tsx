@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import ScrollStack, { ScrollStackItem } from '../components/ScrollStack';
+import TabNavigation from '../components/TabNavigation';
+import { FaUser, FaCode, FaEnvelope } from 'react-icons/fa';
 
 // Import components from other pages
 import AboutSection from './about';
@@ -252,47 +253,40 @@ export default function Home() {
 
       </section>
       
-      {/* ScrollStack Sections */}
-      <ScrollStack
-        useWindowScroll={true}
-        itemDistance={1500}
-        itemScale={0.005}
-        itemStackDistance={8}
-        stackPosition="0%"
-        scaleEndPosition="0%"
-        baseScale={1}
-        blurAmount={0}
-      >
-        {/* About Me Section */}
-        <ScrollStackItem>
+      {/* Tab Navigation Sections */}
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        <TabNavigation
+          tabs={[
+            { id: 'about', label: 'About Me', icon: <FaUser className="w-4 h-4" /> },
+            { id: 'projects', label: 'Projects', icon: <FaCode className="w-4 h-4" /> },
+            { id: 'contact', label: 'Contact', icon: <FaEnvelope className="w-4 h-4" /> }
+          ]}
+        >
+          {/* About Me Section */}
           <section id="about" className="relative">
             <div className="absolute inset-0 -z-10 overflow-hidden">
               <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-secondary/10 rounded-full blur-3xl" />
             </div>
             <AboutSection />
           </section>
-        </ScrollStackItem>
-        
-        {/* Projects Section */}
-        <ScrollStackItem>
+
+          {/* Projects Section */}
           <section id="projects" className="relative">
             <div className="absolute inset-0 -z-10 overflow-hidden">
               <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
             </div>
             <ProjectsSection />
           </section>
-        </ScrollStackItem>
-        
-        {/* Contact Section */}
-        <ScrollStackItem>
+
+          {/* Contact Section */}
           <section id="contact" className="relative">
             <div className="absolute inset-0 -z-10 overflow-hidden">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
             </div>
             <ContactSection />
           </section>
-        </ScrollStackItem>
-      </ScrollStack>
+        </TabNavigation>
+      </div>
     </div>
   );
 }

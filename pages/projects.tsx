@@ -21,18 +21,20 @@ const projects = [
     ]
   },
   {
-    title: 'Mini JS Framework',
-    description: 'A lightweight, zero-dependency JavaScript framework for building modern web applications. Features virtual DOM, state management, routing system, and event bus.',
-    link: 'https://github.com/wxmohd/mini-framework',
+    title: 'PhishTrap',
+    description: 'My senior project at Polytechnic Bahrain. An AI-powered phishing email honeypot and auto-response system that ingests suspicious emails from Gmail and Outlook, classifies them using heuristic AI, automatically responds to phishing attempts, and provides real-time threat intelligence analytics with interactive 3D globe visualization.',
+    link: 'https://github.com/wxmohd/phishtrap',
     demoLink: '#',
-    tags: ['Framework', 'JavaScript', 'Virtual DOM'],
-    icon: <SiJavascript className="text-yellow-500" size={24} />,
-    tech: ['JavaScript'],
+    tags: ['Security', 'AI', 'Senior Project', 'Real-Time'],
+    icon: <FaCode className="text-purple-500" size={24} />,
+    tech: ['Python', 'Flask', 'Flask-SocketIO', 'SQLAlchemy', 'OAuth 2.0', 'Three.js'],
     features: [
-      { name: 'Virtual DOM', description: 'Efficient DOM manipulation without direct browser interactions' },
-      { name: 'State Management', description: 'Centralized application state with reactive updates' },
-      { name: 'Routing System', description: 'Simple hash-based routing for single-page applications' },
-      { name: 'Event Bus', description: 'Custom event handling for component communication' }
+      { name: 'Multi-Provider Email Ingestion', description: 'Gmail API & Microsoft Graph API integration with OAuth 2.0 authentication' },
+      { name: 'AI Classification System', description: 'Heuristic-based phishing detection with confidence scoring (0-100%) and automated responses for high-confidence threats (≥80%)' },
+      { name: 'Real-Time WebSocket Updates', description: 'Live email notifications and dashboard updates without page refresh using Flask-SocketIO' },
+      { name: 'Threat Intelligence Analytics', description: 'IP geolocation, VirusTotal, URLhaus, PhishTank, AlienVault OTX, and AbuseIPDB integration with 3D threat globe visualization' },
+      { name: 'Admin Review Workflow', description: 'Approve/reject/blocklist functionality with decision tracking for uncertain emails (60-79% confidence)' },
+      { name: 'URL Analysis & Sandbox', description: 'Extraction, deduplication, redirect tracking, and comprehensive link analysis' }
     ]
   },
   {
