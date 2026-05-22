@@ -20,21 +20,21 @@
 }
 
 .scroll-stack-inner {
-  padding: 3vh 0.5rem 4rem;
+  padding: 3vh 0.5rem 0;
   min-height: 100vh;
 }
 
 /* Tablet */
 @media (min-width: 640px) {
   .scroll-stack-inner {
-    padding: 8vh 2rem 8rem;
+    padding: 8vh 2rem 0;
   }
 }
 
 /* Desktop */
 @media (min-width: 1024px) {
   .scroll-stack-inner {
-    padding: 10vh 5rem 10rem;
+    padding: 10vh 5rem 0;
   }
 }
 

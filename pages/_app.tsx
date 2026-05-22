@@ -82,7 +82,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         <>
           {/* Main content */}
 
-          <div className="relative overflow-x-hidden">
+          <div className="relative overflow-x-clip">
             {/* Background decorative elements */}
             <div className="fixed top-0 right-0 w-full h-full overflow-hidden -z-20">
               <div className="absolute top-[10%] right-[5%] w-[300px] h-[300px] rounded-full bg-gradient-to-br from-primary/5 to-secondary/5 blur-[100px]" />
@@ -116,7 +116,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
             <AnimatePresence mode="wait">
               <motion.main 
                 key={router.route}
-                className="min-h-screen px-4 pt-20 pb-10"
+                className="min-h-screen px-4 pt-20 pb-0"
                 variants={pageVariants}
                 initial="initial"
                 animate="animate"
@@ -127,10 +127,9 @@ export default function App({ Component, pageProps, router }: AppProps) {
             </AnimatePresence>
 
             {/* Footer */}
-            <footer className="py-6 px-4 text-center text-muted text-sm bg-dark">
+            <footer className="fixed bottom-0 left-0 right-0 z-40 py-3 px-4 text-center text-muted text-sm bg-dark/90 backdrop-blur-sm border-t border-white/5">
               <div className="max-w-6xl mx-auto">
                 <p>© {new Date().getFullYear()} Walaa Mohamed. All rights reserved.</p>
-                <p className="mt-2 text-xs text-muted/60">Designed with love</p>
               </div>
             </footer>
           </div>
