@@ -1,51 +1,53 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaGithub, FaExternalLinkAlt, FaGamepad, FaCode, FaDocker, FaServer, FaReact } from 'react-icons/fa'
+import { FaGithub, FaExternalLinkAlt, FaGamepad, FaCode, FaDocker, FaServer, FaReact, FaRobot, FaEye } from 'react-icons/fa'
 import { SiJavascript, SiNextdotjs, SiGo } from 'react-icons/si'
 import { BsArrowRight, BsCodeSlash } from 'react-icons/bs'
 
 const projects = [
   {
-    title: 'PhishSecure',
-    description: 'A web-based application that uses machine learning to detect phishing emails based on email address. Users can paste an email for risk assessment.',
+    title: 'PhishSecure Bahrain',
+    description: 'A full-stack Cyber Threat Intelligence (CTI) platform monitoring phishing threats targeting Bahrain\'s banking, telecom, government, and business sectors. Collects real threat indicators from live public feeds, scores them for Bahrain relevance, and surfaces them through a Next.js dashboard deployed on Vercel with a Flask API backend on Render.',
     link: 'https://github.com/wxmohd/PhishSecure',
-    demoLink: '#',
-    tags: ['Machine Learning', 'Next.js', 'Flask', 'Security'],
+    demoLink: 'https://phishsecure.onrender.com',
+    tags: ['CTI', 'Next.js', 'Flask', 'Cybersecurity'],
     icon: <FaCode className="text-red-500" size={24} />,
-    tech: ['Python', 'Flask', 'Next.js', 'Tailwind CSS', 'scikit-learn'],
+    tech: ['Next.js', 'TypeScript', 'Python', 'Flask', 'SQLAlchemy', 'SQLite', 'Tailwind CSS', 'Framer Motion'],
     features: [
-      { name: 'Email Analysis', description: 'Paste email address for analysis' },
-      { name: 'ML Detection', description: 'Uses trained model to identify phishing vs legitimate emails' },
-      // { name: 'Threat Detection', description: 'Analyzes suspicious links, spoofed domains, urgent language, and dangerous attachments' },
-      { name: 'Risk Assessment', description: 'Provides verdict, confidence score, and key security flags' }
+      { name: 'Live Threat Collection', description: 'Pulls real indicators from URLhaus, PhishTank, AbuseIPDB, Censys, and AlienVault OTX via async multi-source collection' },
+      { name: 'Bahrain Relevance Scoring', description: 'Scores each indicator (0–100) based on Bahrain brand keywords, .bh TLD, sector detection, and Arabic/English keyword matching' },
+      { name: 'CTI Dashboard', description: 'Polls live stats every 30s — total indicators, high-threat count, daily trend chart, sector breakdown, and recent threat cards' },
+      { name: 'Domain Analysis', description: 'Manual domain lookup with heuristic threat scoring, brand impersonation detection, and recommended action' }
     ]
   },
   {
-    title: 'Mini JS Framework',
-    description: 'A lightweight, zero-dependency JavaScript framework for building modern web applications. Features virtual DOM, state management, routing system, and event bus.',
-    link: 'https://github.com/wxmohd/mini-framework',
+    title: 'Secure Trace AI',
+    description: 'A fully autonomous AI-driven penetration testing agent that plans, executes, and adapts security assessments end-to-end — no manual prompting required. The agent runs an Observe → Reason → Act loop powered by Claude (Anthropic) or GPT-4o, using 19 specialized security tools across a structured 3-phase assessment. All findings are surfaced in a live dashboard and exported as a professional PDF report.',
+    link: '#',
     demoLink: '#',
-    tags: ['Framework', 'JavaScript', 'Virtual DOM'],
-    icon: <SiJavascript className="text-yellow-500" size={24} />,
-    tech: ['JavaScript'],
+    tags: ['AI Agent', 'Python', 'Flask', 'Cybersecurity'],
+    icon: <FaRobot className="text-purple-400" size={24} />,
+    tech: ['Python', 'Flask', 'Claude AI', 'GPT-4o', 'SQLite', 'PostgreSQL', 'ReportLab'],
     features: [
-      { name: 'Virtual DOM', description: 'Efficient DOM manipulation without direct browser interactions' },
-      { name: 'State Management', description: 'Centralized application state with reactive updates' },
-      { name: 'Routing System', description: 'Simple hash-based routing for single-page applications' },
-      { name: 'Event Bus', description: 'Custom event handling for component communication' }
+      { name: 'Autonomous Agent', description: 'Observe → Reason → Act loop with full LLM reasoning trace — no manual prompting required' },
+      { name: '19 Security Tools', description: 'XSS, SQLi, CORS, IDOR, header analysis, directory listing, open redirect, path traversal, and more' },
+      { name: 'Live Dashboard', description: 'Real-time scan progress via WebSocket, severity charts, and findings table' },
+      { name: 'PDF Reports', description: 'Professional branded reports with cover page, findings, evidence, remediation, and agent trace' }
     ]
   },
   {
-    title: 'Social Network Application with Docker',
-    description: 'A social network application with a Go backend and Next.js frontend, containerized using Docker. Features two main containers for backend and frontend services.',
-    link: 'https://github.com/wxmohd/social-network',
+    title: 'Emotions Detector',
+    description: 'A computer vision system that detects facial emotions from webcam video streams using Convolutional Neural Networks (CNNs). Detects faces in real-time using OpenCV, preprocesses frames into normalized face regions, and outputs live emotion predictions with confidence scores across 7 emotion classes.',
+    link: 'https://learn.reboot01.com/git/wamohamed/emotions-detector',
     demoLink: '#',
-    tags: ['Docker', 'Go', 'Next.js', 'Full Stack'],
-    icon: <FaDocker className="text-blue-500" size={24} />,
-    tech: ['Go', 'Next.js', 'Docker', 'WebSocket'],
-    dockerSetup: [
-      { name: 'Backend Container', description: 'Go application that handles server-side logic, database interactions, and WebSocket connections' },
-      { name: 'Frontend Container', description: 'Next.js application that serves the client-side interface' }
+    tags: ['Computer Vision', 'Deep Learning', 'Python', 'CNN'],
+    icon: <FaEye className="text-green-400" size={24} />,
+    tech: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit', 'NumPy', 'Pandas'],
+    features: [
+      { name: 'Real-time Detection', description: 'Processes webcam video streams at ~30 FPS, detecting faces and predicting emotions with confidence scores' },
+      { name: '7 Emotion Classes', description: 'Classifies Happy, Sad, Angry, Surprise, Fear, Disgust, and Neutral from 48×48 grayscale face images' },
+      { name: 'CNN Architecture', description: '3 convolutional blocks with batch normalization, dropout, and data augmentation to handle class imbalance' },
+      { name: 'Streamlit Interface', description: 'Interactive web UI for model evaluation, real-time detection, training results, and integration tests' }
     ]
   }
 ]
@@ -172,41 +174,6 @@ export default function ProjectsSection() {
                 </div>
               )}
 
-              {'dockerSetup' in project && (
-                <div className="mt-6">
-                  <motion.button
-                    className="flex items-center text-primary font-medium"
-                    onClick={() => setActiveProject(activeProject === i ? null : i)}
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <span>View Docker Setup</span>
-                    <BsArrowRight className="ml-2" />
-                  </motion.button>
-                  
-                  <AnimatePresence>
-                    {activeProject === i && (
-                      <motion.div 
-                        className="mt-4 space-y-4"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {project.dockerSetup.map((container, idx) => (
-                          <div key={idx} className="bg-white/5 p-4 rounded-lg border border-white/10">
-                            <h4 className="font-bold text-secondary mb-2 flex items-center">
-                              {idx === 0 ? <FaServer className="mr-2" /> : <FaReact className="mr-2" />}
-                              {container.name}
-                            </h4>
-                            <p className="text-muted text-sm">{container.description}</p>
-                          </div>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              )}
             </div>
           </motion.div>
         ))}
