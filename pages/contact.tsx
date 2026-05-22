@@ -50,7 +50,7 @@ const socialIconVariants = {
 
 export default function ContactSection() {
   return (
-    <div className="px-4 overflow-hidden min-h-[80vh] flex flex-col justify-center pt-24 pb-12">
+    <div className="px-4 overflow-hidden min-h-[80vh] flex flex-col justify-center py-12">
       {/* Background decorative elements */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-3xl -z-10" />
       <div className="absolute bottom-10 left-10 w-72 h-72 bg-gradient-to-tr from-accent/10 to-primary/10 rounded-full blur-3xl -z-10" />
