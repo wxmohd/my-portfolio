@@ -208,16 +208,17 @@ const ScrollStack = ({
 
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
+      const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
       const lenis = new Lenis({
-        duration: 1.0,
+        duration: isTouchDevice ? 0 : 1.0,
         easing: (t: number) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
-        touchMultiplier: 1.5,
+        touchMultiplier: 1.0,
         infinite: false,
         wheelMultiplier: 1.0,
-        lerp: 0.12,
+        lerp: isTouchDevice ? 1 : 0.12,
         syncTouch: true,
-        syncTouchLerp: 0.1
+        syncTouchLerp: isTouchDevice ? 1 : 0.1,
       });
 
       lenis.on('scroll', handleScroll);
