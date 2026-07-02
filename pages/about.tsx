@@ -233,7 +233,7 @@ export default function AboutSection() {
           >
             I'm a<span className="mx-1"></span>
             <span className="font-medium text-primary relative inline-block">
-            cybersecurity student
+            cybersecurity analyst
               <motion.span 
                 className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-primary/50"
                 initial={{ width: 0 }}

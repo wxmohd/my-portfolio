@@ -23,7 +23,7 @@ const projects = [
   {
     title: 'Secure Trace AI',
     description: 'A fully autonomous AI-driven penetration testing agent that plans, executes, and adapts security assessments end-to-end — no manual prompting required. The agent runs an Observe → Reason → Act loop powered by Claude (Anthropic) or GPT-4o, using 19 specialized security tools across a structured 3-phase assessment. All findings are surfaced in a live dashboard and exported as a professional PDF report.',
-    link: '#',
+    link: 'https://github.com/wxmohd/Flooss-Guard',
     demoLink: '#',
     tags: ['AI Agent', 'Python', 'Flask', 'Cybersecurity'],
     icon: <FaRobot className="text-purple-400" size={24} />,
@@ -36,9 +36,24 @@ const projects = [
     ]
   },
   {
+    title: 'Image-Inspector',
+    description: 'A command-line digital forensics tool that analyzes images to uncover hidden information. Extracts EXIF metadata — including GPS location, device details, and timestamps — and detects steganographically concealed data such as PGP keys appended beyond the JPEG end marker. Built as an installable Python package with a clean CLI.',
+    link: 'https://github.com/wxmohd/image-inspector',
+    demoLink: '#',
+    tags: ['Digital Forensics', 'Python', 'CLI', 'Steganography'],
+    icon: <FaCode className="text-cyan-400" size={24} />,
+    tech: ['Python', 'Pillow', 'pip / setuptools'],
+    features: [
+      { name: 'EXIF Metadata Extraction', description: 'Pulls geolocation (converted from DMS to decimal), camera make/model, and capture timestamps from image files' },
+      { name: 'Steganography Detection', description: 'Scans raw bytes beyond the JPEG end marker (0xFFD9) to detect and extract hidden PGP key blocks' },
+      { name: 'Flexible CLI', description: 'Composable flags (-m, -s, -o) to run metadata extraction, steganography detection, or both, with output saved to file' },
+      { name: 'Installable Package', description: 'Registered as a system-wide command via pip install -e . with a structured package layout and tests' }
+    ]
+  },
+  {
     title: 'Emotions Detector',
     description: 'A computer vision system that detects facial emotions from webcam video streams using Convolutional Neural Networks (CNNs). Detects faces in real-time using OpenCV, preprocesses frames into normalized face regions, and outputs live emotion predictions with confidence scores across 7 emotion classes.',
-    link: 'https://learn.reboot01.com/git/wamohamed/emotions-detector',
+    link: 'https://github.com/wxmohd/emotions-detector',
     demoLink: '#',
     tags: ['Computer Vision', 'Deep Learning', 'Python', 'CNN'],
     icon: <FaEye className="text-green-400" size={24} />,

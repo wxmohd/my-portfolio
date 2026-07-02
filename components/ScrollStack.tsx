@@ -51,6 +51,10 @@ const ScrollStack = ({
   const cardsRef = useRef<HTMLElement[]>([]);
   const lastTransformsRef = useRef(new Map());
   const isUpdatingRef = useRef(false);
+  const nativeScrollHandlerRef = useRef<(() => void) | null>(null);
+  const cardNaturalPositionsRef = useRef<number[]>([]);
+  const endElementNaturalPositionRef = useRef<number>(0);
+  const resizeCleanupRef = useRef<(() => void) | null>(null);
 
   const calculateProgress = useCallback((scrollTop: number, start: number, end: number) => {
     if (scrollTop < start) return 0;
@@ -107,12 +111,12 @@ const ScrollStack = ({
       ? document.querySelector(`.${styles['scroll-stack-end']}`)
       : scrollerRef.current?.querySelector(`.${styles['scroll-stack-end']}`);
 
-    const endElementTop = endElement ? getElementOffset(endElement as HTMLElement) : 0;
+    const endElementTop = endElementNaturalPositionRef.current || (endElement ? getElementOffset(endElement as HTMLElement) : 0);
 
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
 
-      const cardTop = getElementOffset(card);
+      const cardTop = cardNaturalPositionsRef.current[i] ?? getElementOffset(card);
       const triggerStart = cardTop - stackPositionPx - itemStackDistance * i;
       const triggerEnd = cardTop - scaleEndPositionPx;
       const pinStart = cardTop - stackPositionPx - itemStackDistance * i;
@@ -127,7 +131,7 @@ const ScrollStack = ({
       if (blurAmount) {
         let topCardIndex = 0;
         for (let j = 0; j < cardsRef.current.length; j++) {
-          const jCardTop = getElementOffset(cardsRef.current[j]);
+          const jCardTop = cardNaturalPositionsRef.current[j] ?? getElementOffset(cardsRef.current[j]);
           const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
           if (scrollTop >= jTriggerStart) {
             topCardIndex = j;
@@ -208,20 +212,17 @@ const ScrollStack = ({
 
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
-      const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
       const lenis = new Lenis({
-        duration: isTouchDevice ? 0 : 1.0,
+        duration: 1.2,
         easing: (t: number) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
         touchMultiplier: 1.0,
         infinite: false,
         wheelMultiplier: 1.0,
-        lerp: isTouchDevice ? 1 : 0.12,
+        lerp: 0.1,
         syncTouch: true,
-        syncTouchLerp: isTouchDevice ? 1 : 0.1,
+        syncTouchLerp: 0.075,
       });
-
-      lenis.on('scroll', handleScroll);
 
       const raf = (time: number) => {
         lenis.raf(time);
@@ -261,7 +262,7 @@ const ScrollStack = ({
       lenisRef.current = lenis;
       return lenis;
     }
-  }, [handleScroll, useWindowScroll]);
+  }, [handleScroll, useWindowScroll, updateCardTransforms]);
 
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
@@ -276,35 +277,54 @@ const ScrollStack = ({
     cardsRef.current = cards;
     const transformsCache = lastTransformsRef.current;
 
+    const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
+
     cards.forEach((card, i) => {
       if (i < cards.length - 1) {
-        card.style.marginBottom = `${itemDistance}px`;
+        // Negative margin: the next card overlaps the end of this one
+        card.style.marginBottom = `-${itemDistance}px`;
       }
-      card.style.willChange = 'transform, filter';
-      card.style.transformOrigin = 'top center';
-      card.style.backfaceVisibility = 'hidden';
-      (card.style as any).perspective = '1000px';
-      (card.style as any).webkitPerspective = '1000px';
+      // Later cards stack visually on top of earlier ones
+      card.style.zIndex = `${i + 1}`;
     });
 
-    // Wait for entrance animation to complete before starting scroll transforms
-    const animationDelay = 800 + (cards.length * 100);
+    // Reveal cards with a smooth one-time transition as they enter the viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles['card-visible']);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    cards.forEach((card) => observer.observe(card));
+
+    // Lenis only smooths wheel scrolling on desktop; mobile stays fully native
     const animationTimer = setTimeout(() => {
-      cards.forEach((card) => {
-        card.style.animation = 'none';
-        card.style.opacity = '1';
-      });
-      setupLenis();
-      updateCardTransforms();
-    }, animationDelay);
+      if (!isTouchDevice) {
+        setupLenis();
+      }
+    }, 100);
 
     return () => {
       clearTimeout(animationTimer);
+      observer.disconnect();
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
       if (lenisRef.current) {
         lenisRef.current.destroy();
+      }
+      if (nativeScrollHandlerRef.current) {
+        window.removeEventListener('scroll', nativeScrollHandlerRef.current);
+        nativeScrollHandlerRef.current = null;
+      }
+      if (resizeCleanupRef.current) {
+        resizeCleanupRef.current();
+        resizeCleanupRef.current = null;
       }
       stackCompletedRef.current = false;
       cardsRef.current = [];

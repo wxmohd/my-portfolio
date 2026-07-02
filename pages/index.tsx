@@ -88,7 +88,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05, backgroundColor: 'rgba(129, 75, 210, 0.15)' }}
               >
                 <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-                Cybersecurity Student
+                Cybersecurity Analyst
               </motion.div>
               
               <motion.div 
@@ -99,7 +99,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05, backgroundColor: 'rgba(168, 85, 247, 0.15)' }}
               >
                 <span className="inline-block w-2 h-2 rounded-full bg-accent mr-2 animate-pulse"></span>
-                Full-Stack Developement Student
+                Full-Stack Developer
               </motion.div>
             </div>
 
@@ -184,16 +184,24 @@ export default function Home() {
               variants={itemVariants}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <Link href="#projects" className="btn btn-primary flex items-center justify-center gap-2 px-6 py-3">
-                <span className="relative">
-                  <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-white animate-ping"></span>
-                </span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                </svg>
-                <span>View Projects</span>
-                              </Link>
+              <Link href="#projects" className="btn btn-outline relative flex items-center justify-center gap-2 px-6 py-3 overflow-hidden group">
+                {/* Diagonal overlay */}
+                <div className="absolute inset-0 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 transform origin-top-right z-0"></div>
+                </div>
+
+                {/* Button content */}
+                <div className="flex items-center justify-center gap-2 z-10 relative">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                  </svg>
+                  <span>View Projects</span>
+                </div>
+
+                {/* Animated dot */}
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Link>
               <Link href="#contact" className="btn btn-outline relative flex items-center justify-center gap-2 px-6 py-3 overflow-hidden group">
                 {/* Diagonal overlay */}
                 <div className="absolute inset-0 overflow-hidden">
@@ -212,6 +220,27 @@ export default function Home() {
                 {/* Animated dot */}
                 <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
+              <a
+                href="/resume.pdf"
+                download="Walaa-Mohamed-Resume.pdf"
+                className="btn btn-outline relative flex items-center justify-center gap-2 px-6 py-3 overflow-hidden group"
+              >
+                {/* Diagonal overlay */}
+                <div className="absolute inset-0 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 transform origin-top-right z-0"></div>
+                </div>
+
+                {/* Button content */}
+                <div className="flex items-center justify-center gap-2 z-10 relative">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                  <span>Resume</span>
+                </div>
+
+                {/* Animated dot */}
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </a>
             </motion.div>
           </motion.div>
           
@@ -255,7 +284,7 @@ export default function Home() {
       {/* ScrollStack Sections */}
       <ScrollStack
         useWindowScroll={true}
-        itemDistance={400}
+        itemDistance={60}
         itemScale={0.005}
         itemStackDistance={8}
         stackPosition="0%"
@@ -265,7 +294,7 @@ export default function Home() {
       >
         {/* About Me Section */}
         <ScrollStackItem>
-          <section id="about" className="relative pb-[100vh]">
+          <section id="about" className="relative">
             <div className="absolute inset-0 -z-10 overflow-hidden">
               <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-secondary/10 rounded-full blur-3xl" />
             </div>
@@ -275,7 +304,7 @@ export default function Home() {
         
         {/* Projects Section */}
         <ScrollStackItem>
-          <section id="projects" className="relative pb-[100vh]">
+          <section id="projects" className="relative">
             <div className="absolute inset-0 -z-10 overflow-hidden">
               <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
             </div>

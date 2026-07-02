@@ -123,14 +123,14 @@ export default function ContactSection() {
                   <div className="bg-primary/20 p-2 rounded-full">
                     <FaGithub className="text-primary" size={18} />
                   </div>
-                  <span className="text-light text-sm sm:text-base">github.com/wxmohd</span>
+                  <a href="https://github.com/wxmohd" target="_blank" rel="noopener noreferrer" className="text-light text-sm sm:text-base hover:text-primary transition-colors">github.com/wxmohd</a>
                 </div>
                 
                 <div className="flex items-start space-x-3">
                   <div className="bg-primary/20 p-2 rounded-full">
                     <FaLinkedin className="text-primary" size={18} />
                   </div>
-                  <span className="text-light text-sm sm:text-base">linkedin.com/walaa-mohamed-dev</span>
+                  <a href="https://www.linkedin.com/in/walaa-mohamed-dev" target="_blank" rel="noopener noreferrer" className="text-light text-sm sm:text-base hover:text-primary transition-colors">linkedin.com/in/walaa-mohamed-dev</a>
                 </div>
               </div>
             </motion.div>
