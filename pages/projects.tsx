@@ -99,99 +99,107 @@ export default function ProjectsSection() {
         </motion.p>
       </div>
 
-      {/* Featured Projects */}
-      <div className="space-y-16">
-        {projects.map((project, i) => (
-          <motion.div
-            key={i}
-            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl shadow-xl overflow-hidden"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.2 }}
-          >
-            <div className="p-4 sm:p-6 md:p-10">
-              <div className="flex flex-col gap-4 mb-6">
-                <div className="flex items-center">
-                  <div className="mr-3 sm:mr-4 p-2 sm:p-3 bg-white/10 rounded-lg shrink-0">
-                    {project.icon}
+      {/* Featured Projects - compact 2-column grid with expandable details */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        {projects.map((project, i) => {
+          const isOpen = activeProject === i;
+          return (
+            <motion.div
+              key={i}
+              layout
+              className={`bg-white/5 backdrop-blur-md border rounded-xl shadow-xl overflow-hidden transition-colors ${
+                isOpen ? 'border-primary/40 md:col-span-2' : 'border-white/10 hover:border-primary/30'
+              }`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <div className="p-5 sm:p-6">
+                {/* Header: icon, title, GitHub */}
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="flex items-center min-w-0">
+                    <div className="mr-3 p-2 sm:p-3 bg-white/10 rounded-lg shrink-0">
+                      {project.icon}
+                    </div>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent truncate">
+                      {project.title}
+                    </h2>
                   </div>
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                    {project.title}
-                  </h2>
-                </div>
-                <div className="flex">
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center px-4 py-2 bg-white/10 text-light rounded-lg hover:bg-primary/20 border border-white/10 hover:border-primary/30 transition"
+                    className="flex items-center shrink-0 px-3 py-2 bg-white/10 text-light rounded-lg hover:bg-primary/20 border border-white/10 hover:border-primary/30 transition text-sm"
                   >
                     <FaGithub className="mr-2" /> GitHub
                   </a>
                 </div>
-              </div>
 
-              <p className="text-muted mb-6 leading-relaxed">{project.description}</p>
+                {/* Description: clamped when collapsed, full when expanded */}
+                <p className={`text-muted mb-4 leading-relaxed text-sm sm:text-base ${isOpen ? '' : 'line-clamp-3'}`}>
+                  {project.description}
+                </p>
 
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex items-center mb-6">
-                <h3 className="text-sm uppercase tracking-wider text-muted mr-4">Tech Stack:</h3>
-                <div className="overflow-x-auto scrollbar-hide">
-                  <div className="flex space-x-3 min-w-max pb-2">
-                    {project.tech.map((tech, index) => (
-                      <span key={index} className="text-light font-medium whitespace-nowrap">{tech}</span>
-                    ))}
-                  </div>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag, index) => (
+                    <span key={index} className="px-3 py-1 bg-primary/10 text-primary text-xs sm:text-sm rounded-full border border-primary/20">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-              </div>
 
-              {/* Conditional rendering for features or docker setup */}
-              {'features' in project && (
-                <div className="mt-6">
-                  <motion.button
-                    className="flex items-center text-primary font-medium"
-                    onClick={() => setActiveProject(activeProject === i ? null : i)}
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <span>View Features</span>
-                    <BsArrowRight className="ml-2" />
-                  </motion.button>
-                  
-                  <AnimatePresence>
-                    {activeProject === i && (
-                      <motion.div 
-                        className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {project.features.map((feature, idx) => (
-                          <div key={idx} className="bg-white/5 p-4 rounded-lg border border-white/10">
-                            <h4 className="font-bold text-primary mb-2 flex items-center">
-                              <BsCodeSlash className="mr-2" /> {feature.name}
-                            </h4>
-                            <p className="text-muted text-sm">{feature.description}</p>
+                {/* Expand toggle */}
+                <motion.button
+                  className="flex items-center text-primary font-medium text-sm sm:text-base"
+                  onClick={() => setActiveProject(isOpen ? null : i)}
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span>{isOpen ? 'Hide Details' : 'View Details'}</span>
+                  <BsArrowRight className={`ml-2 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
+                </motion.button>
+
+                {/* Expanded details: tech stack + features */}
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="flex items-center mt-6 mb-6">
+                        <h3 className="text-sm uppercase tracking-wider text-muted mr-4 shrink-0">Tech Stack:</h3>
+                        <div className="overflow-x-auto scrollbar-hide">
+                          <div className="flex space-x-3 min-w-max pb-2">
+                            {project.tech.map((tech, index) => (
+                              <span key={index} className="text-light font-medium whitespace-nowrap">{tech}</span>
+                            ))}
                           </div>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              )}
+                        </div>
+                      </div>
 
-            </div>
-          </motion.div>
-        ))}
+                      {'features' in project && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {project.features.map((feature, idx) => (
+                            <div key={idx} className="bg-white/5 p-4 rounded-lg border border-white/10">
+                              <h4 className="font-bold text-primary mb-2 flex items-center">
+                                <BsCodeSlash className="mr-2" /> {feature.name}
+                              </h4>
+                              <p className="text-muted text-sm">{feature.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* More Projects Link */}

@@ -2,6 +2,9 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack';
+import TextScramble from '../components/TextScramble';
+import Typewriter from '../components/Typewriter';
+import MagneticButton from '../components/MagneticButton';
 
 // Import components from other pages
 import AboutSection from './about';
@@ -78,54 +81,36 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Animated badges */}
-            <div className="flex flex-wrap gap-3 mb-6">
-              <motion.div 
-                className="inline-block bg-white/5 backdrop-blur-md border border-primary/30 rounded-full px-4 py-1 text-sm font-mono text-light font-medium"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                whileHover={{ scale: 1.05, backgroundColor: 'rgba(129, 75, 210, 0.15)' }}
-              >
-                <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-                Cybersecurity Analyst
-              </motion.div>
-              
-              <motion.div 
-                className="inline-block bg-white/5 backdrop-blur-md border border-accent/30 rounded-full px-4 py-1 text-sm font-mono text-light font-medium"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                whileHover={{ scale: 1.05, backgroundColor: 'rgba(168, 85, 247, 0.15)' }}
-              >
-                <span className="inline-block w-2 h-2 rounded-full bg-accent mr-2 animate-pulse"></span>
-                Full-Stack Developer
-              </motion.div>
-            </div>
 
             {/* Main heading with 3D effect */}
             <div className="relative mb-4">
               <h1 className="text-5xl md:text-7xl font-bold mb-2 tracking-tight text-light">
                 Hello, I'm{' '}
                 <div className="relative inline-block">
-                  <span 
-                    className="relative z-10 bg-clip-text text-transparent font-bold text-5xl md:text-7xl" 
-                    style={{ 
+                  <TextScramble
+                    text="Walaa Mohamed"
+                    className="relative z-10 bg-clip-text text-transparent font-bold text-5xl md:text-7xl shimmer-text"
+                    style={{
                       fontFamily: "'Space Grotesk', sans-serif",
                       letterSpacing: '-0.02em',
                       background: 'linear-gradient(90deg, #814bd2, #6366f1, #a855f7, #6366f1)',
+                      backgroundSize: '300% 100%',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent'
                     }}
-                  >
-                    Walaa Mohamed
-                  </span>
+                  />
                   <div 
                     className="absolute -bottom-2 left-0 w-full h-1 rounded-full"
                     style={{ background: 'linear-gradient(90deg, #814bd2, #a855f7)', boxShadow: '0 0 20px rgba(129, 75, 210, 0.5)' }}
                   ></div>
                 </div>
               </h1>
+
+              {/* Typewriter rotating roles */}
+              <div className="mt-3 text-lg md:text-2xl font-mono text-light h-8">
+                <span className="text-primary mr-2">&gt;</span>
+                <Typewriter words={['Cybersecurity Analyst', 'Full-Stack Developer', 'AI/ML Developer']} />
+              </div>
             </div>
 
             {/* Enhanced description with cybersecurity and development focus */}
@@ -184,6 +169,7 @@ export default function Home() {
               variants={itemVariants}
               className="mt-10 flex flex-wrap gap-4"
             >
+              <MagneticButton>
               <Link href="#projects" className="btn btn-outline relative flex items-center justify-center gap-2 px-6 py-3 overflow-hidden group">
                 {/* Diagonal overlay */}
                 <div className="absolute inset-0 overflow-hidden">
@@ -202,6 +188,8 @@ export default function Home() {
                 {/* Animated dot */}
                 <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
+              </MagneticButton>
+              <MagneticButton>
               <Link href="#contact" className="btn btn-outline relative flex items-center justify-center gap-2 px-6 py-3 overflow-hidden group">
                 {/* Diagonal overlay */}
                 <div className="absolute inset-0 overflow-hidden">
@@ -220,6 +208,8 @@ export default function Home() {
                 {/* Animated dot */}
                 <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
+              </MagneticButton>
+              <MagneticButton>
               <a
                 href="/resume.pdf"
                 download="Walaa-Mohamed-Resume.pdf"
@@ -241,6 +231,7 @@ export default function Home() {
                 {/* Animated dot */}
                 <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
+              </MagneticButton>
             </motion.div>
           </motion.div>
           

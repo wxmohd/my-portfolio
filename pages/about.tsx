@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ElementType } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaReact, FaPython, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaShieldAlt, FaTerminal, FaCode, FaLock, FaSearch, FaUserAlt, FaLaptopCode, FaBolt } from 'react-icons/fa'
 import { SiTailwindcss, SiNextdotjs, SiTypescript, SiWireshark, SiKalilinux, SiMetasploit, SiGo } from 'react-icons/si'
@@ -7,45 +7,35 @@ import { BiSolidAnalyse } from 'react-icons/bi'
 import { RiShieldKeyholeFill, RiUserHeartLine } from 'react-icons/ri'
 import { BsShieldLock, BsFileEarmarkCode } from 'react-icons/bs'
 import { MdSecurity, MdTimeline } from 'react-icons/md'
-import AnimatedList from '../components/AnimatedList'
-
-// Security tools list for AnimatedList
 const securityTools = [
-  'Wazuh SIEM - Security monitoring & threat detection',
-  'Wireshark - Network protocol analyzer',
-  'Kali Linux - Penetration testing distribution',
-  'Metasploit - Exploitation framework',
-  'Nmap - Network discovery & security auditing',
-  'Suricata - Network threat detection engine',
-  'Burp Suite - Web security testing',
-  'Splunk - Log analysis & SIEM',
-  'OSINT Tools - Open source intelligence',
-  'PowerShell - Security automation',
+  { name: 'Wazuh SIEM',   desc: 'Security monitoring & threat detection', Icon: RiShieldKeyholeFill, color: 'text-purple-400' },
+  { name: 'Wireshark',    desc: 'Network protocol analyzer',               Icon: SiWireshark,         color: 'text-blue-400'   },
+  { name: 'Kali Linux',   desc: 'Penetration testing distribution',        Icon: SiKalilinux,         color: 'text-red-400'    },
+  { name: 'Metasploit',   desc: 'Exploitation framework',                  Icon: SiMetasploit,        color: 'text-orange-400' },
+  { name: 'Nmap',         desc: 'Network discovery & security auditing',   Icon: FaSearch,            color: 'text-cyan-400'   },
+  { name: 'Suricata',     desc: 'Network threat detection engine',         Icon: FaBolt,              color: 'text-yellow-400' },
+  { name: 'Burp Suite',   desc: 'Web security testing',                    Icon: BsFileEarmarkCode,   color: 'text-green-400'  },
+  { name: 'Splunk',       desc: 'Log analysis & SIEM',                     Icon: BiSolidAnalyse,      color: 'text-indigo-400' },
+  { name: 'OSINT Tools',  desc: 'Open source intelligence',                Icon: MdSecurity,          color: 'text-pink-400'   },
+  { name: 'PowerShell',   desc: 'Security automation',                     Icon: FaTerminal,          color: 'text-blue-300'   },
+  { name: 'Shuffle',      desc: 'SOAR workflow automation',                Icon: MdTimeline,          color: 'text-violet-400' },
+  { name: 'DeepBlueCLI', desc: 'PowerShell log threat hunting',            Icon: FaCode,              color: 'text-slate-300'  },
+  { name: 'Netcat',       desc: 'Network connection & pentesting',         Icon: FaLaptopCode,        color: 'text-emerald-400'},
+  { name: 'VirusTotal',   desc: 'File & URL threat analysis',              Icon: FaShieldAlt,         color: 'text-green-400'  },
+  { name: 'MISP',         desc: 'Threat intelligence platform',            Icon: FaLock,              color: 'text-amber-400'  },
 ]
 
-// Icon animation variants
-const iconVariants = {
-  hover: {
-    scale: 1.2,
-    rotate: [0, 10, -10, 0],
-    transition: {
-      duration: 0.5,
-      ease: "easeInOut"
-    }
-  }
-}
-
 const techSkills = [
-  { name: 'React', icon: <motion.div whileHover="hover" variants={iconVariants}><FaReact size={40} className="text-blue-400" /></motion.div> },
-  { name: 'Next.js', icon: <motion.div whileHover="hover" variants={iconVariants}><SiNextdotjs size={40} className="text-white" /></motion.div> },
-  { name: 'Tailwind', icon: <motion.div whileHover="hover" variants={iconVariants}><SiTailwindcss size={40} className="text-cyan-400" /></motion.div> },
-  { name: 'TypeScript', icon: <motion.div whileHover="hover" variants={iconVariants}><SiTypescript size={40} className="text-blue-700" /></motion.div> },
-  { name: 'Python', icon: <motion.div whileHover="hover" variants={iconVariants}><FaPython size={40} className="text-yellow-500" /></motion.div> },
-  { name: 'HTML5', icon: <motion.div whileHover="hover" variants={iconVariants}><FaHtml5 size={40} className="text-orange-500" /></motion.div> },
-  { name: 'CSS3', icon: <motion.div whileHover="hover" variants={iconVariants}><FaCss3Alt size={40} className="text-blue-600" /></motion.div> },
-  { name: 'Node.js', icon: <motion.div whileHover="hover" variants={iconVariants}><FaNodeJs size={40} className="text-green-600" /></motion.div> },
-  { name: 'Git', icon: <motion.div whileHover="hover" variants={iconVariants}><FaGitAlt size={40} className="text-red-500" /></motion.div> },
-  { name: 'Golang', icon: <motion.div whileHover="hover" variants={iconVariants}><SiGo size={40} className="text-cyan-600" /></motion.div> },
+  { name: 'React',      Icon: FaReact,       color: 'text-blue-400',   glow: 'rgba(96,165,250,1)',   border: 'rgba(96,165,250,0.4)'  },
+  { name: 'Next.js',    Icon: SiNextdotjs,   color: 'text-slate-200',  glow: 'rgba(226,232,240,1)',  border: 'rgba(226,232,240,0.3)' },
+  { name: 'Tailwind',   Icon: SiTailwindcss, color: 'text-cyan-400',   glow: 'rgba(34,211,238,1)',   border: 'rgba(34,211,238,0.4)'  },
+  { name: 'TypeScript', Icon: SiTypescript,  color: 'text-blue-500',   glow: 'rgba(59,130,246,1)',   border: 'rgba(59,130,246,0.4)'  },
+  { name: 'Python',     Icon: FaPython,      color: 'text-yellow-400', glow: 'rgba(250,204,21,1)',   border: 'rgba(250,204,21,0.4)'  },
+  { name: 'HTML5',      Icon: FaHtml5,       color: 'text-orange-500', glow: 'rgba(249,115,22,1)',   border: 'rgba(249,115,22,0.4)'  },
+  { name: 'CSS3',       Icon: FaCss3Alt,     color: 'text-blue-400',   glow: 'rgba(59,130,246,1)',   border: 'rgba(59,130,246,0.4)'  },
+  { name: 'Node.js',    Icon: FaNodeJs,      color: 'text-green-500',  glow: 'rgba(34,197,94,1)',    border: 'rgba(34,197,94,0.4)'   },
+  { name: 'Git',        Icon: FaGitAlt,      color: 'text-red-500',    glow: 'rgba(239,68,68,1)',    border: 'rgba(239,68,68,0.4)'   },
+  { name: 'Golang',     Icon: SiGo,          color: 'text-cyan-500',   glow: 'rgba(6,182,212,1)',    border: 'rgba(6,182,212,0.4)'   },
 ]
 
 // Cyber icon animation variants
@@ -72,6 +62,8 @@ interface SecuritySkill {
   examples: string;
   level: number;
   color: string;
+  icon: ElementType;
+  iconColor: string;
 }
 
 export default function AboutSection() {
@@ -79,43 +71,21 @@ export default function AboutSection() {
   const [terminalText, setTerminalText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const [terminalVisible, setTerminalVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.matchMedia('(hover: none)').matches);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
   const securitySkills: SecuritySkill[] = [
-    {
-      category: "Network Security",
-      examples: "Subnetting, static routing, ACLs",
-      level: 3,
-      color: "from-blue-600 to-cyan-500"
-    },
-    {
-      category: "Threat Detection & SIEM",
-      examples: "Wazuh, Suricata, alert tuning",
-      level: 4,
-      color: "from-violet-600 to-purple-500"
-    },
-    {
-      category: "Security Automation & SOAR",
-      examples: "Wazuh webhooks, Shuffle workflows, automated email alerts",
-      level: 2,
-      color: "from-red-600 to-orange-500"
-    },
-    {
-      category: "Security Monitoring",
-      examples: "PowerShell logs, DeepBlueCLI, auditlog",
-      level: 3,
-      color: "from-emerald-600 to-green-500"
-    },
-    {
-      category: "Penetration Testing",
-      examples: "Netcat, Metasploit, enumeration",
-      level: 2,
-      color: "from-fuchsia-600 to-pink-500"
-    },
-    {
-      category: "Threat Intelligence",
-      examples: "VirusTotal, MISP, indicator logging",
-      level: 2,
-      color: "from-amber-600 to-yellow-500"
-    }
+    { category: "Network Security",          examples: "Subnetting, static routing, ACLs",                            level: 3, color: "from-blue-600 to-cyan-500",      icon: FaShieldAlt,       iconColor: "text-cyan-400"   },
+    { category: "Threat Detection & SIEM",    examples: "Wazuh, Suricata, alert tuning",                             level: 4, color: "from-violet-600 to-purple-500",  icon: RiShieldKeyholeFill, iconColor: "text-purple-400" },
+    { category: "Security Automation & SOAR", examples: "Wazuh webhooks, Shuffle workflows, automated email alerts",  level: 2, color: "from-red-600 to-orange-500",    icon: FaBolt,              iconColor: "text-orange-400" },
+    { category: "Security Monitoring",        examples: "PowerShell logs, DeepBlueCLI, auditlog",                    level: 3, color: "from-emerald-600 to-green-500",  icon: MdSecurity,          iconColor: "text-green-400"  },
+    { category: "Penetration Testing",        examples: "Netcat, Metasploit, enumeration",                           level: 2, color: "from-fuchsia-600 to-pink-500",   icon: FaCode,              iconColor: "text-pink-400"   },
+    { category: "Threat Intelligence",        examples: "VirusTotal, MISP, indicator logging",                       level: 2, color: "from-amber-600 to-yellow-500",   icon: BiSolidAnalyse,      iconColor: "text-yellow-400" },
   ];
 
   // Check when terminal is visible
@@ -197,6 +167,7 @@ export default function AboutSection() {
         transition={{ duration: 0.8 }}
       >
         <div className="relative mb-8">
+          {!isMobile && (
           <motion.div 
             className="absolute -inset-10 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-3xl opacity-50 z-0"
             animate={{ 
@@ -209,6 +180,7 @@ export default function AboutSection() {
               repeatType: "reverse" 
             }}
           />
+          )}
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-light mb-6 tracking-tight relative z-10 px-4"
             initial={{ opacity: 0, y: -30 }}
@@ -266,121 +238,34 @@ export default function AboutSection() {
             transition={{ duration: 0.8 }}
           />
         </h2>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 justify-items-center">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
           {techSkills.map((skill, i) => (
             <motion.div
               key={i}
-              className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 shadow-lg rounded-xl p-4 hover:border-primary/30 hover:shadow-xl transition"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="flex flex-col items-center justify-center p-5 rounded-2xl cursor-default relative overflow-hidden group border border-white/8"
+              style={{ background: 'rgba(255,255,255,0.03)' }}
+              initial={{ opacity: 0, scale: 0.75 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.4 }}
+              transition={{ delay: i * 0.06, duration: 0.4, type: 'spring', stiffness: 180 }}
+              whileHover={isMobile ? {} : { scale: 1.12, borderColor: skill.border }}
             >
-              {skill.icon}
-              <span className="text-light text-xs sm:text-sm mt-2 font-medium text-center">{skill.name}</span>
+              {/* Per-icon pulsing glow orb */}
+              <div
+                className="absolute w-16 h-16 rounded-full blur-2xl pointer-events-none"
+                style={{
+                  background: skill.glow,
+                  animation: `tech-pulse ${2.8 + (i % 4) * 0.55}s ease-in-out infinite`,
+                  animationDelay: `${i * 0.28}s`,
+                }}
+              />
+              <skill.Icon className={`text-4xl mb-3 ${skill.color} relative z-10`} />
+              <span className="text-light text-xs font-semibold relative z-10 text-center">{skill.name}</span>
             </motion.div>
           ))}
         </div>
       </motion.div>
 
-      {/* Cyber Security Skills */}
-      <motion.div 
-        className="mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-light mb-8 text-center relative inline-block px-4">
-          <span className="relative z-10"><BsShieldLock className="inline-block mr-2 text-primary" size={20} /> Cyber Skills & Tools</span>
-          <motion.span 
-            className="absolute -bottom-2 left-0 w-full h-2 bg-secondary/30 z-0 rounded-full" 
-            initial={{ width: 0 }}
-            whileInView={{ width: '100%' }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          />
-        </h2>
-        
-        {/* Security Skills - Floating Cards */}
-        <div className="relative py-4 px-2 overflow-hidden">
-          {/* Background decorative elements */}
-          <div className="absolute inset-0 opacity-20 z-0 overflow-hidden">
-            <div className="absolute top-10 left-10 w-40 h-40 bg-primary rounded-full blur-3xl"></div>
-            <div className="absolute bottom-5 right-10 w-60 h-60 bg-secondary rounded-full blur-3xl"></div>
-            <div className="absolute top-1/3 left-1/2 w-32 h-32 bg-accent rounded-full blur-3xl"></div>
-          </div>
-          
-          {/* Header */}
-          <motion.div 
-            className="relative z-10 flex items-center justify-between mb-8 bg-white/5 backdrop-blur-md rounded-xl p-3 shadow-lg border border-white/10"
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-          >
-            <div className="flex items-center">
-              <motion.div 
-                initial={{ rotate: 0 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                className="mr-3 bg-gradient-to-r from-primary to-secondary rounded-full p-2 shadow-md"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </motion.div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Security Expertise</h3>
-            </div>
-            <span className="text-xs text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 flex items-center shadow-sm">
-              <span className="w-2 h-2 bg-primary rounded-full mr-1.5 animate-pulse"></span>
-              2025 Edition
-            </span>
-          </motion.div>
-          
-          {/* Interactive Floating Skill Cards */}
-          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-5">
-            {securitySkills.map((skill, index) => (
-              <motion.div
-                key={skill.category}
-                className="relative"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <motion.div 
-                  className={`bg-white/5 backdrop-blur-md rounded-lg shadow-lg p-3 sm:p-4 h-full flex flex-col overflow-hidden relative group border border-white/10`}
-                  whileHover={{ y: -8, scale: 1.02, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)' }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {/* Colored accent */}
-                  <div className={`absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b ${skill.color} rounded-l-lg`}></div>
-                  
-                  {/* Skill header */}
-                  <div className="flex flex-wrap items-center mb-2 sm:mb-3 pl-2">
-                    <h4 className="text-light font-bold text-sm sm:text-base">{skill.category}</h4>
-                  </div>
-                  
-                  {/* Skill details */}
-                  <div className="bg-white/5 px-2 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm text-muted font-mono flex-grow flex items-center border border-white/5">
-                    {skill.examples}
-                  </div>
-                  
-                  {/* Animated glow on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '100%' }}
-                    transition={{ duration: 1.2, ease: "easeInOut" }}
-                  />
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
       
       {/* Security Tools - Animated List */}
       <motion.div
@@ -400,50 +285,58 @@ export default function AboutSection() {
             transition={{ duration: 0.8 }}
           />
         </h2>
-        <div className="flex justify-center">
-          <AnimatedList
-            items={securityTools}
-            onItemSelect={(item, index) => console.log(`Selected: ${item}`)}
-            showGradients={true}
-            enableArrowNavigation={true}
-            displayScrollbar={false}
-          />
+        {/* Two-row marquee ticker */}
+        <div className="overflow-hidden space-y-3 py-2">
+          {/* Row 1 — scrolls left */}
+          <div className="overflow-hidden">
+            <div className="flex gap-3 animate-marquee-left w-max">
+              {[...securityTools.slice(0, 8), ...securityTools.slice(0, 8)].map((tool, i) => (
+                <div key={i} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-white/10 min-w-max hover:border-primary/40 hover:bg-primary/5 transition-colors cursor-default">
+                  <tool.Icon className={`text-xl flex-shrink-0 ${tool.color}`} />
+                  <div>
+                    <div className="text-light text-sm font-semibold leading-tight">{tool.name}</div>
+                    <div className="text-muted text-xs leading-tight mt-0.5">{tool.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Row 2 — scrolls right */}
+          <div className="overflow-hidden">
+            <div className="flex gap-3 animate-marquee-right w-max">
+              {[...securityTools.slice(8), ...securityTools.slice(8)].map((tool, i) => (
+                <div key={i} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-white/10 min-w-max hover:border-primary/40 hover:bg-primary/5 transition-colors cursor-default">
+                  <tool.Icon className={`text-xl flex-shrink-0 ${tool.color}`} />
+                  <div>
+                    <div className="text-light text-sm font-semibold leading-tight">{tool.name}</div>
+                    <div className="text-muted text-xs leading-tight mt-0.5">{tool.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </motion.div>
 
       {/* Interactive Terminal */}
       <div className="mb-16 flex justify-center">
         <motion.div
-          className="rounded-lg overflow-hidden shadow-xl terminal-animation border border-gray-700/50 hover:border-indigo-500/30 transition-all duration-300 relative bg-black max-h-[280px] inline-block"
+          className="w-full rounded-lg overflow-hidden shadow-xl terminal-animation border border-gray-700/50 transition-all duration-300 relative bg-black max-h-[280px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          whileHover={{ boxShadow: '0 0 20px rgba(0, 255, 0, 0.15)' }}
+          whileHover={isMobile ? {} : { boxShadow: '0 0 20px rgba(0, 255, 0, 0.15)' }}
         >
-          {/* Terminal glow effect */}
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500/5 to-cyan-500/5 rounded-lg blur-sm"></div>
           <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-3 py-1 flex items-center border-b border-gray-700/50">
             <div className="flex space-x-2">
-              <motion.div 
-                className="w-2.5 h-2.5 bg-red-500 rounded-full"
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.2 }}
-              ></motion.div>
-              <motion.div 
-                // className="w-2.5 h-2.5 bg-yellow-500 rounded-full"
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.2 }}
-              ></motion.div>
-              <motion.div 
-                className="w-2.5 h-2.5 bg-green-500 rounded-full"
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.2 }}
-              ></motion.div>
+              <div className="w-2.5 h-2.5 bg-red-500 rounded-full"></div>
+              <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full"></div>
+              <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
             </div>
             <p className="text-gray-400 text-xs ml-3 flex-1 text-center font-mono">security-terminal</p>
           </div>
-          <div className="p-3 font-mono text-xs text-green-400 whitespace-pre overflow-auto min-w-[400px]">
+          <div className="p-3 font-mono text-xs text-green-400 whitespace-pre overflow-x-auto w-full">
             {terminalText}
             {showCursor && <span className="animate-pulse">▋</span>}
           </div>
